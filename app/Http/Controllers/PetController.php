@@ -32,11 +32,38 @@ class PetController extends Controller
         ]);
 
         Pet::create($data);
-        return redirect()->route('pets.index')->with('success', 'Pet added');
+        return redirect()->route('pets.index')->with('success', 'Pet added successfully!');
     }
 
     public function show(Pet $pet)
     {
         return view('pets.show', compact('pet'));
+    }
+
+    public function edit(Pet $pet)
+    {
+        $owners = Owner::all();
+        return view('pets.edit', compact('pet', 'owners'));
+    }
+
+    public function update(Request $request, Pet $pet)
+    {
+        $data = $request->validate([
+            'owner_id' => 'required|exists:owners,id',
+            'name' => 'required|string|max:255',
+            'species' => 'nullable|string',
+            'breed' => 'nullable|string',
+            'age' => 'nullable|integer',
+            'notes' => 'nullable|string',
+        ]);
+
+        $pet->update($data);
+        return redirect()->route('pets.index')->with('success', 'Pet updated successfully!');
+    }
+
+    public function destroy(Pet $pet)
+    {
+        $pet->delete();
+        return redirect()->route('pets.index')->with('success', 'Pet deleted successfully!');
     }
 }

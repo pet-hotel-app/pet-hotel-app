@@ -22,17 +22,41 @@ class OwnerController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'nullable|email',
-            'phone' => 'nullable|string',
-            'address' => 'nullable|string',
+            'email' => 'required|email|unique:owners,email',
+            'phone' => 'required|string|max:20',
+            'address' => 'required|string',
         ]);
 
         Owner::create($data);
-        return redirect()->route('owners.index')->with('success', 'Owner created');
+        return redirect()->route('owners.index')->with('success', 'Owner created successfully!');
     }
 
     public function show(Owner $owner)
     {
         return view('owners.show', compact('owner'));
+    }
+
+    public function edit(Owner $owner)
+    {
+        return view('owners.edit', compact('owner'));
+    }
+
+    public function update(Request $request, Owner $owner)
+    {
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:owners,email,' . $owner->id,
+            'phone' => 'required|string|max:20',
+            'address' => 'required|string',
+        ]);
+
+        $owner->update($data);
+        return redirect()->route('owners.index')->with('success', 'Owner updated successfully!');
+    }
+
+    public function destroy(Owner $owner)
+    {
+        $owner->delete();
+        return redirect()->route('owners.index')->with('success', 'Owner deleted successfully!');
     }
 }

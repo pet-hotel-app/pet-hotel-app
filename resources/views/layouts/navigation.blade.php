@@ -1,4 +1,17 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false, notifCount: 0, messageCount: 0 }" x-init="
+    // Poll for notification and message counts every 30 seconds
+    setInterval(() => {
+        fetch('/api/notifications/unread-count')
+            .then(res => res.json())
+            .then(data => notifCount = data.count);
+        fetch('/api/messages/unread-count')
+            .then(res => res.json())
+            .then(data => messageCount = data.count);
+    }, 30000);
+    // Initial load
+    fetch('/api/notifications/unread-count').then(res => res.json()).then(data => notifCount = data.count);
+    fetch('/api/messages/unread-count').then(res => res.json()).then(data => messageCount = data.count);
+" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -12,14 +25,68 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                    @if(Auth::user()->isAdmin())
+                        <!-- Admin Navigation -->
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard') || request()->routeIs('admin.dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('owners.index')" :active="request()->routeIs('owners.*')">
+                            {{ __('Owners') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('pets.index')" :active="request()->routeIs('pets.*')">
+                            {{ __('Pets') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('rooms.index')" :active="request()->routeIs('rooms.*')">
+                            {{ __('Rooms') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('bookings.index')" :active="request()->routeIs('bookings.*')">
+                            {{ __('Bookings') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.*')">
+                            {{ __('Invoices') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('reports.bookings')" :active="request()->routeIs('reports.*')">
+                            {{ __('Reports') }}
+                        </x-nav-link>
+                    @else
+                        <!-- Customer Navigation -->
+                        <x-nav-link :href="route('customer.dashboard')" :active="request()->routeIs('customer.dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('customer.rooms')" :active="request()->routeIs('customer.rooms') || request()->routeIs('customer.book')">
+                            {{ __('Book Room') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('customer.pets.index')" :active="request()->routeIs('customer.pets.*')">
+                            {{ __('My Pets') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('customer.bookings')" :active="request()->routeIs('customer.bookings')">
+                            {{ __('My Bookings') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('customer.invoices.index')" :active="request()->routeIs('customer.invoices.*')">
+                            {{ __('Invoices') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            <div class="hidden sm:flex sm:items-center sm:ms-6 gap-4">
+                <!-- Notification Bell -->
+                <a href="@if(Auth::user()->isAdmin()) # @else {{ route('customer.notifications.index') }} @endif" class="relative">
+                    <svg class="w-6 h-6 text-gray-600 hover:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                    </svg>
+                    <span x-show="notifCount > 0" x-text="notifCount" class="absolute -top-1 -right-1 bg-pink-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold"></span>
+                </a>
+
+                <!-- Messages Icon -->
+                <a href="@if(Auth::user()->isAdmin()) {{ route('messages.index') }} @else {{ route('customer.messages.index') }} @endif" class="relative">
+                    <svg class="w-6 h-6 text-gray-600 hover:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                    <span x-show="messageCount > 0" x-text="messageCount" class="absolute -top-1 -right-1 bg-pink-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold"></span>
+                </a>
+
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -34,9 +101,15 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
+                        @if(Auth::user()->isCustomer())
+                            <x-dropdown-link :href="route('customer.profile')">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
+                        @else
+                            <x-dropdown-link :href="route('profile.edit')">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
+                        @endif
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -67,9 +140,56 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+            @if(Auth::user()->isAdmin())
+                <!-- Admin Responsive Navigation -->
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard') || request()->routeIs('admin.dashboard')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('owners.index')" :active="request()->routeIs('owners.*')">
+                    {{ __('Owners') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pets.index')" :active="request()->routeIs('pets.*')">
+                    {{ __('Pets') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('rooms.index')" :active="request()->routeIs('rooms.*')">
+                    {{ __('Rooms') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('bookings.index')" :active="request()->routeIs('bookings.*')">
+                    {{ __('Bookings') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.*')">
+                    {{ __('Invoices') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('reports.bookings')" :active="request()->routeIs('reports.*')">
+                    {{ __('Reports') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('messages.index')" :active="request()->routeIs('messages.*')">
+                    {{ __('Messages') }}
+                </x-responsive-nav-link>
+            @else
+                <!-- Customer Responsive Navigation -->
+                <x-responsive-nav-link :href="route('customer.dashboard')" :active="request()->routeIs('customer.dashboard')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('customer.rooms')" :active="request()->routeIs('customer.rooms') || request()->routeIs('customer.book')">
+                    {{ __('Book Room') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('customer.pets.index')" :active="request()->routeIs('customer.pets.*')">
+                    {{ __('My Pets') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('customer.bookings')" :active="request()->routeIs('customer.bookings')">
+                    {{ __('My Bookings') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('customer.invoices.index')" :active="request()->routeIs('customer.invoices.*')">
+                    {{ __('Invoices') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('customer.notifications.index')" :active="request()->routeIs('customer.notifications.*')">
+                    {{ __('Notifications') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('customer.messages.index')" :active="request()->routeIs('customer.messages.*')">
+                    {{ __('Messages') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
@@ -80,9 +200,15 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
+                @if(Auth::user()->isCustomer())
+                    <x-responsive-nav-link :href="route('customer.profile')">
+                        {{ __('Profile') }}
+                    </x-responsive-nav-link>
+                @else
+                    <x-responsive-nav-link :href="route('profile.edit')">
+                        {{ __('Profile') }}
+                    </x-responsive-nav-link>
+                @endif
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

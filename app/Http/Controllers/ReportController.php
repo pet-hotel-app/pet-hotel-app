@@ -10,26 +10,23 @@ class ReportController extends Controller
 {
     public function bookings(Request $request)
     {
-        $from = $request->query('from', now()->subMonth()->toDateString());
-        $to = $request->query('to', now()->toDateString());
+        $totalBookings = Booking::count();
+        $confirmedBookings = Booking::where('status', 'confirmed')->count();
+        $pendingBookings = Booking::where('status', 'pending')->count();
+        $recentBookings = Booking::with('pet.owner', 'room')->latest()->take(10)->get();
 
-        $bookings = Booking::with('pet.owner','room')
-            ->whereBetween('start_date', [$from, $to])
-            ->orderBy('start_date','desc')
-            ->get();
-
-        return view('reports.bookings', compact('bookings','from','to'));
+        return view('reports.bookings', compact('totalBookings', 'confirmedBookings', 'pendingBookings', 'recentBookings'));
     }
 
     public function income(Request $request)
     {
-        $from = $request->query('from', now()->subMonth()->toDateString());
-        $to = $request->query('to', now()->toDateString());
+        $invoices = Invoice::with('booking.pet.owner')->get();
+        $totalRevenue = $invoices->sum('amount');
+        $paidAmount = $invoices->where('paid', true)->sum('amount');
+        $unpaidAmount = $invoices->where('paid', false)->sum('amount');
+        $totalInvoices = $invoices->count();
+        $recentInvoices = Invoice::with('booking.pet.owner')->latest()->take(10)->get();
 
-        $invoices = Invoice::whereBetween('created_at', [$from, $to])->get();
-        $total = $invoices->sum('amount');
-
-        return view('reports.income', compact('invoices','total','from','to'));
+        return view('reports.income', compact('totalRevenue', 'paidAmount', 'unpaidAmount', 'totalInvoices', 'recentInvoices'));
     }
 }
-        $total = $invoices->sum('amount');

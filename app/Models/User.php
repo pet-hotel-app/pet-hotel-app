@@ -62,4 +62,28 @@ class User extends Authenticatable
     {
         return $this->role === 'customer';
     }
+
+    /**
+     * Get user's notifications
+     */
+    public function notifications()
+    {
+        return $this->hasMany(\App\Models\Notification::class);
+    }
+
+    /**
+     * Get messages sent by user
+     */
+    public function sentMessages()
+    {
+        return $this->hasMany(\App\Models\Message::class, 'sender_id');
+    }
+
+    /**
+     * Get messages received by user
+     */
+    public function receivedMessages()
+    {
+        return $this->hasMany(\App\Models\Message::class, 'receiver_id');
+    }
 }

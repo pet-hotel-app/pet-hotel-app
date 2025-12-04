@@ -27,6 +27,40 @@ class InvoiceController extends Controller
         ]);
 
         $invoice->update(array_merge($data, ['paid_at' => $data['paid'] ? now() : null]));
+        
+        // Notify admins about payment
+        if ($data['paid']) {
+            $admins = \App\Models\User::where('role', 'admin')->get();
+            foreach ($admins as $admin) {
+                \App\Models\Notification::create([
+                    'user_id' => $admin->id,
+                    'type' => 'payment_received',
+                    'title' => 'Payment Received',
+                    'message' => 'Payment received for Invoice #INV-' . str_pad($invoice->id, 5, '0', STR_PAD_LEFT),
+                    'data' => json_encode([
+                        'invoice_id' => $invoice->id,
+                        'amount' => $invoice->amount,
+                    ]),
+                ]);
+            }
+
+            // Notify customer about payment confirmation
+            $customerUser = \App\Models\User::where('email', $invoice->booking->pet->owner->email)->first();
+            if ($customerUser) {
+                \App\Models\Notification::create([
+                    'user_id' => $customerUser->id,
+                    'type' => 'payment_received',
+                    'title' => 'Payment Confirmed',
+                    'message' => 'Your payment for Invoice #' . $invoice->id . ' has been confirmed. Thank you!',
+                    'data' => json_encode([
+                        'invoice_id' => $invoice->id,
+                        'amount' => $invoice->amount,
+                    ]),
+                ]);
+            }
+        }
+        
         return redirect()->route('invoices.show', $invoice)->with('success','Invoice updated');
+
     }
 }

@@ -2,35 +2,27 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Owner;
 
 class CustomerSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $customers = [
-            [
-                'name' => 'John Doe',
-                'email' => 'john@example.com',
-                'password' => bcrypt('password'),
-                'role' => 'customer',
-                'email_verified_at' => now(),
-            ],
-            [
-                'name' => 'Jane Smith',
-                'email' => 'jane@example.com',
-                'password' => bcrypt('password'),
-                'role' => 'customer',
-                'email_verified_at' => now(),
-            ],
-        ];
+        $user = User::create([
+            'name' => 'Customer Pet Hotel',
+            'email' => 'customer@pethotel.com',
+            'password' => bcrypt('password'),
+            'role' => 'customer',
+            'email_verified_at' => now(),
+        ]);
 
-        foreach ($customers as $customer) {
-            \App\Models\User::create($customer);
-        }
+        Owner::create([
+            'name' => $user->name,
+            'email' => $user->email,
+            'phone' => '081234567890',
+            'address' => 'Jl. Customer No. 123, Jakarta',
+        ]);
     }
 }
