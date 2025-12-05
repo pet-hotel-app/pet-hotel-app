@@ -48,6 +48,9 @@
                         <x-nav-link :href="route('reports.bookings')" :active="request()->routeIs('reports.*')">
                             {{ __('Reports') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('messages.index')" :active="request()->routeIs('messages.*')">
+                            {{ __('Messages') }}
+                        </x-nav-link>
                     @else
                         <!-- Customer Navigation -->
                         <x-nav-link :href="route('customer.dashboard')" :active="request()->routeIs('customer.dashboard')">

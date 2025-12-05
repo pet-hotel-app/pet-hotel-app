@@ -18,7 +18,7 @@
             <!-- Info Cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                 <!-- My Bookings -->
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="card">
                     <div class="p-6">
                         <div class="flex items-center">
                             <div class="p-3 rounded-full bg-blue-100 text-blue-600">
@@ -35,7 +35,7 @@
                 </div>
 
                 <!-- My Pets -->
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="card">
                     <div class="p-6">
                         <div class="flex items-center">
                             <div class="p-3 rounded-full bg-purple-100 text-purple-600">
@@ -52,7 +52,7 @@
                 </div>
 
                 <!-- Available Rooms -->
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="card">
                     <div class="p-6">
                         <div class="flex items-center">
                             <div class="p-3 rounded-full bg-green-100 text-green-600">
@@ -70,11 +70,11 @@
             </div>
 
             <!-- Main Content -->
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="card">
                 <div class="p-6 text-gray-900">
                     <h4 class="text-lg font-semibold mb-4">Getting Started</h4>
                     <div class="space-y-4">
-                        <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <div class="alert alert-info">
                             <div class="flex-shrink-0">
                                 <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>

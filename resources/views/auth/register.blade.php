@@ -51,7 +51,7 @@
 
                     <!-- Name -->
                     <div class="mb-5">
-                        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                        <label for="name" class="form-label mb-2">
                             Full Name
                         </label>
                         <div class="relative">
@@ -68,14 +68,14 @@
                                    autofocus 
                                    autocomplete="name"
                                    placeholder="John Doe"
-                                   class="input-field w-full pl-12 pr-4 py-3.5 text-sm border border-gray-300 rounded-xl focus:outline-none bg-gray-50">
+                                   class="form-input-icon">
                         </div>
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
                     <!-- Email Address -->
                     <div class="mb-5">
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                        <label for="email" class="form-label mb-2">
                             Email Address
                         </label>
                         <div class="relative">
@@ -91,14 +91,14 @@
                                    required 
                                    autocomplete="username"
                                    placeholder="your@email.com"
-                                   class="input-field w-full pl-12 pr-4 py-3.5 text-sm border border-gray-300 rounded-xl focus:outline-none bg-gray-50">
+                                   class="form-input-icon">
                         </div>
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
                     <!-- Password -->
                     <div class="mb-5">
-                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                        <label for="password" class="form-label mb-2">
                             Password
                         </label>
                         <div class="relative">
@@ -113,14 +113,14 @@
                                    required 
                                    autocomplete="new-password"
                                    placeholder="••••••••"
-                                   class="input-field w-full pl-12 pr-4 py-3.5 text-sm border border-gray-300 rounded-xl focus:outline-none bg-gray-50">
+                                   class="form-input-icon">
                         </div>
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     <!-- Confirm Password -->
                     <div class="mb-6">
-                        <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-2">
+                        <label for="password_confirmation" class="form-label mb-2">
                             Confirm Password
                         </label>
                         <div class="relative">
@@ -135,14 +135,14 @@
                                    required 
                                    autocomplete="new-password"
                                    placeholder="••••••••"
-                                   class="input-field w-full pl-12 pr-4 py-3.5 text-sm border border-gray-300 rounded-xl focus:outline-none bg-gray-50">
+                                   class="form-input-icon">
                         </div>
                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
 
                     <!-- Submit Button -->
                     <button type="submit" 
-                            class="gradient-button w-full py-3.5 rounded-xl text-white font-semibold text-base shadow-lg">
+                            class="btn-gradient w-full">
                         Create Account
                     </button>
 
@@ -150,8 +150,7 @@
                     <div class="mt-6 text-center">
                         <span class="text-sm text-gray-600">Already have an account?</span>
                         <a href="{{ $isAdmin ? route('admin.login') : route('customer.login') }}" 
-                           class="text-sm font-medium ml-1 hover:underline"
-                           style="color: #FFB6C9;">
+                           class="text-link ml-1">
                             Sign in
                         </a>
                     </div>

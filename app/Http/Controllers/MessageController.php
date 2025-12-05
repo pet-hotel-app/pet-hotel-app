@@ -81,7 +81,7 @@ class MessageController extends Controller
             }])
             ->get();
 
-        return view('messages.index', compact('customers'));
+        return view('admin.messages.index', compact('customers'));
     }
 
     // Admin: View conversation with specific customer
@@ -99,7 +99,7 @@ class MessageController extends Controller
             ->whereNull('read_at')
             ->update(['read_at' => now()]);
 
-        return view('messages.show', compact('customer', 'messages'));
+        return view('admin.messages.show', compact('customer', 'messages'));
     }
 
     // Admin: Send message to customer

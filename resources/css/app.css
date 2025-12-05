@@ -1,3 +1,107 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    /*=================================================================
+     * Buttons
+     *=================================================================*/
+
+    /* Tombol dasar, jangan digunakan langsung */
+    .btn {
+        @apply inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md font-semibold text-sm tracking-wide focus:outline-none transition ease-in-out duration-150;
+    }
+
+    /* Tombol utama dengan warna solid (default Breeze) */
+    .btn-primary {
+        @apply btn bg-gray-800 text-white hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2;
+    }
+
+    /* Tombol dengan background gradasi, menonjol untuk CTA (Call to Action) */
+    .btn-gradient {
+        @apply btn text-white font-semibold shadow-lg rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200;
+    }
+
+    /* Tombol sekunder dengan outline/border */
+    .btn-secondary {
+        @apply btn bg-white text-gray-900 border-gray-300 hover:bg-gray-100 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2;
+    }
+
+    /* Tombol untuk aksi berbahaya (delete, etc) */
+    .btn-danger {
+        @apply btn bg-red-600 text-white hover:bg-red-500 active:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2;
+    }
+
+
+    /*=================================================================
+     * Form Elements
+     *=================================================================*/
+
+    /* Input field standar untuk form */
+    .form-input {
+        @apply w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm;
+    }
+
+    /* Input field dengan style khusus seperti di halaman login */
+    .form-input-icon {
+        @apply form-input bg-gray-50 pl-12 pr-4 py-3 text-sm rounded-xl focus:outline-none border-gray-300;
+    }
+
+    /* Label untuk form input */
+    .form-label {
+        @apply block font-medium text-sm text-gray-700;
+    }
+
+    /* Checkbox kustom */
+    .form-checkbox {
+        @apply rounded border-gray-300 text-pink-400 shadow-sm focus:ring-pink-300 w-4 h-4;
+    }
+
+
+    /*=================================================================
+     * Cards & Containers
+     *=================================================================*/
+
+    /* Card dasar untuk membungkus konten */
+    .card {
+        @apply bg-white overflow-hidden shadow-sm sm:rounded-lg;
+    }
+
+    /* Card yang digunakan pada halaman guest (login, register) */
+    .card-auth {
+        @apply w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg;
+    }
+
+    /* Card untuk menampilkan informasi di dashboard */
+    .card-info {
+        @apply bg-white p-6 rounded-xl shadow-sm border border-gray-100;
+    }
+
+
+    /*=================================================================
+     * Typography
+     *=================================================================*/
+    .heading-1 { @apply text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl; }
+    .heading-2 { @apply text-3xl font-bold; }
+    .heading-3 { @apply text-2xl font-bold; }
+    .heading-4 { @apply text-xl font-bold; }
+
+    .text-muted { @apply text-gray-500; }
+    .text-link { @apply text-sm font-medium text-brand-pink hover:underline; }
+
+
+    /*=================================================================
+     * Badges & Alerts
+     *=================================================================*/
+    .alert {
+        @apply flex items-start p-4 rounded-lg;
+    }
+
+    .alert-info {
+        @apply alert bg-blue-50;
+    }
+
+    .alert-info-icon {
+        @apply w-6 h-6 text-blue-600;
+    }
+}

@@ -8,11 +8,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <style>
-        body { font-family: 'Figtree', sans-serif; }
-    </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
 
@@ -30,9 +26,9 @@
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 text-center">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-gray-900 hover:text-purple-700 font-medium text-sm px-4 py-2 border border-gray-300 rounded-lg bg-white">Masuk</a>
+                        <a href="{{ route('login') }}" class="btn-secondary">Masuk</a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="text-white bg-gradient-to-r from-pink-500 to-purple-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 font-medium rounded-lg text-sm px-4 py-2 text-center">Daftar</a>
+                            <a href="{{ route('register') }}" class="btn-gradient">Daftar</a>
                         @endif
                     @endauth
                 @endif
@@ -44,7 +40,7 @@
         <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 items-center">
             
             <div class="mr-auto place-self-center lg:col-span-7">
-                <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-gray-900">
+                <h1 class="heading-1 max-w-2xl mb-4 text-gray-900">
                     Liburan Tenang, <br>
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">Hewan Peliharaan Senang.</span>
                 </h1>
@@ -58,10 +54,10 @@
                             Ke Dashboard
                         </a>
                     @else
-                        <a href="{{ route('register') }}" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 shadow-lg hover:opacity-90">
+                        <a href="{{ route('register') }}" class="btn-gradient px-5 py-3 text-base">
                             Booking Sekarang
                         </a>
-                        <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100">
+                        <a href="{{ route('login') }}" class="btn-secondary px-5 py-3 text-base">
                             Masuk
                         </a>
                     @endauth
@@ -80,27 +76,27 @@
         <div class="px-4 mx-auto max-w-screen-xl">
             <div class="grid space-y-8 md:grid-cols-3 md:gap-8 md:space-y-0">
                 
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <div class="card-info">
                     <div class="w-10 h-10 mb-4 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     </div>
-                    <h3 class="mb-2 text-xl font-bold text-gray-900">Easy Booking</h3>
+                    <h3 class="heading-4 mb-2 text-gray-900">Easy Booking</h3>
                     <p class="text-gray-500 text-sm">Reservasi kamar dengan cepat melalui dashboard pelanggan.</p>
                 </div>
 
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <div class="card-info">
                     <div class="w-10 h-10 mb-4 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
-                    <h3 class="mb-2 text-xl font-bold text-gray-900">Pet Profile</h3>
+                    <h3 class="heading-4 mb-2 text-gray-900">Pet Profile</h3>
                     <p class="text-gray-500 text-sm">Kelola data hewan, riwayat kesehatan, dan makanan.</p>
                 </div>
 
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <div class="card-info">
                     <div class="w-10 h-10 mb-4 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                     </div>
-                    <h3 class="mb-2 text-xl font-bold text-gray-900">Cozy Rooms</h3>
+                    <h3 class="heading-4 mb-2 text-gray-900">Cozy Rooms</h3>
                     <p class="text-gray-500 text-sm">Pilihan kamar bersih dan nyaman, terpantau real-time.</p>
                 </div>
 
