@@ -28,45 +28,45 @@
                     @if(Auth::user()->isAdmin())
                         <!-- Admin Navigation -->
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard') || request()->routeIs('admin.dashboard')">
-                            {{ __('Dashboard') }}
+                            {{ __('navigation.dashboard') }}
                         </x-nav-link>
                         <x-nav-link :href="route('owners.index')" :active="request()->routeIs('owners.*')">
-                            {{ __('Owners') }}
+                            {{ __('navigation.owners') }}
                         </x-nav-link>
                         <x-nav-link :href="route('pets.index')" :active="request()->routeIs('pets.*')">
-                            {{ __('Pets') }}
+                            {{ __('navigation.pets') }}
                         </x-nav-link>
                         <x-nav-link :href="route('rooms.index')" :active="request()->routeIs('rooms.*')">
-                            {{ __('Rooms') }}
+                            {{ __('navigation.rooms') }}
                         </x-nav-link>
                         <x-nav-link :href="route('bookings.index')" :active="request()->routeIs('bookings.*')">
-                            {{ __('Bookings') }}
+                            {{ __('navigation.bookings') }}
                         </x-nav-link>
                         <x-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.*')">
-                            {{ __('Invoices') }}
+                            {{ __('navigation.invoices') }}
                         </x-nav-link>
                         <x-nav-link :href="route('reports.bookings')" :active="request()->routeIs('reports.*')">
-                            {{ __('Reports') }}
+                            {{ __('navigation.reports') }}
                         </x-nav-link>
                         <x-nav-link :href="route('messages.index')" :active="request()->routeIs('messages.*')">
-                            {{ __('Messages') }}
+                            {{ __('navigation.messages') }}
                         </x-nav-link>
                     @else
                         <!-- Customer Navigation -->
                         <x-nav-link :href="route('customer.dashboard')" :active="request()->routeIs('customer.dashboard')">
-                            {{ __('Dashboard') }}
+                            {{ __('navigation.dashboard') }}
                         </x-nav-link>
                         <x-nav-link :href="route('customer.rooms')" :active="request()->routeIs('customer.rooms') || request()->routeIs('customer.book')">
-                            {{ __('Book Room') }}
+                            {{ __('navigation.book_room') }}
                         </x-nav-link>
                         <x-nav-link :href="route('customer.pets.index')" :active="request()->routeIs('customer.pets.*')">
-                            {{ __('My Pets') }}
+                            {{ __('navigation.my_pets') }}
                         </x-nav-link>
                         <x-nav-link :href="route('customer.bookings')" :active="request()->routeIs('customer.bookings')">
-                            {{ __('My Bookings') }}
+                            {{ __('navigation.my_bookings') }}
                         </x-nav-link>
                         <x-nav-link :href="route('customer.invoices.index')" :active="request()->routeIs('customer.invoices.*')">
-                            {{ __('Invoices') }}
+                            {{ __('navigation.invoices') }}
                         </x-nav-link>
                     @endif
                 </div>
@@ -106,11 +106,11 @@
                     <x-slot name="content">
                         @if(Auth::user()->isCustomer())
                             <x-dropdown-link :href="route('customer.profile')">
-                                {{ __('Profile') }}
+                                {{ __('navigation.profile') }}
                             </x-dropdown-link>
                         @else
                             <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Profile') }}
+                                {{ __('navigation.profile') }}
                             </x-dropdown-link>
                         @endif
 
@@ -121,7 +121,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('navigation.logout') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -146,51 +146,51 @@
             @if(Auth::user()->isAdmin())
                 <!-- Admin Responsive Navigation -->
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard') || request()->routeIs('admin.dashboard')">
-                    {{ __('Dashboard') }}
+                    {{ __('navigation.dashboard') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('owners.index')" :active="request()->routeIs('owners.*')">
-                    {{ __('Owners') }}
+                    {{ __('navigation.owners') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('pets.index')" :active="request()->routeIs('pets.*')">
-                    {{ __('Pets') }}
+                    {{ __('navigation.pets') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('rooms.index')" :active="request()->routeIs('rooms.*')">
-                    {{ __('Rooms') }}
+                    {{ __('navigation.rooms') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('bookings.index')" :active="request()->routeIs('bookings.*')">
-                    {{ __('Bookings') }}
+                    {{ __('navigation.bookings') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.*')">
-                    {{ __('Invoices') }}
+                    {{ __('navigation.invoices') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('reports.bookings')" :active="request()->routeIs('reports.*')">
-                    {{ __('Reports') }}
+                    {{ __('navigation.reports') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('messages.index')" :active="request()->routeIs('messages.*')">
-                    {{ __('Messages') }}
+                    {{ __('navigation.messages') }}
                 </x-responsive-nav-link>
             @else
                 <!-- Customer Responsive Navigation -->
                 <x-responsive-nav-link :href="route('customer.dashboard')" :active="request()->routeIs('customer.dashboard')">
-                    {{ __('Dashboard') }}
+                    {{ __('navigation.dashboard') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('customer.rooms')" :active="request()->routeIs('customer.rooms') || request()->routeIs('customer.book')">
-                    {{ __('Book Room') }}
+                    {{ __('navigation.book_room') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('customer.pets.index')" :active="request()->routeIs('customer.pets.*')">
-                    {{ __('My Pets') }}
+                    {{ __('navigation.my_pets') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('customer.bookings')" :active="request()->routeIs('customer.bookings')">
-                    {{ __('My Bookings') }}
+                    {{ __('navigation.my_bookings') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('customer.invoices.index')" :active="request()->routeIs('customer.invoices.*')">
-                    {{ __('Invoices') }}
+                    {{ __('navigation.invoices') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('customer.notifications.index')" :active="request()->routeIs('customer.notifications.*')">
-                    {{ __('Notifications') }}
+                    {{ __('navigation.notifications') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('customer.messages.index')" :active="request()->routeIs('customer.messages.*')">
-                    {{ __('Messages') }}
+                    {{ __('navigation.messages') }}
                 </x-responsive-nav-link>
             @endif
         </div>
@@ -205,11 +205,11 @@
             <div class="mt-3 space-y-1">
                 @if(Auth::user()->isCustomer())
                     <x-responsive-nav-link :href="route('customer.profile')">
-                        {{ __('Profile') }}
+                        {{ __('navigation.profile') }}
                     </x-responsive-nav-link>
                 @else
                     <x-responsive-nav-link :href="route('profile.edit')">
-                        {{ __('Profile') }}
+                        {{ __('navigation.profile') }}
                     </x-responsive-nav-link>
                 @endif
 
@@ -220,7 +220,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('navigation.logout') }}
                     </x-responsive-nav-link>
                 </form>
             </div>

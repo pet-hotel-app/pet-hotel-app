@@ -25,6 +25,12 @@ class MessageController extends Controller
           ->orderBy('created_at', 'asc')
           ->get();
 
+        // Mark messages from admin as read
+        Message::where('receiver_id', $user->id)
+            ->whereIn('sender_id', $admins->pluck('id'))
+            ->whereNull('read_at')
+            ->update(['read_at' => now()]);
+
         return view('customer.messages', compact('messages', 'admins'));
     }
 

@@ -18,6 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Language Switcher Route
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['id', 'en'])) {
+        session()->put('locale', $locale);
+    }
+    return redirect()->back();
+})->name('lang.switch');
+
 // Admin Dashboard
 Route::get('/admin/dashboard', function () {
     $totalOwners = \App\Models\Owner::count();

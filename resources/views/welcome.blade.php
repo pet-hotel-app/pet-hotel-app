@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pet Hotel - Penitipan Hewan Modern</title>
+    <title>{{ __('messages.app_title') }}</title>
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet" />
@@ -18,17 +18,30 @@
                 <div class="p-2 bg-gradient-to-br from-pink-500 to-purple-600 rounded-lg text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                 </div>
-                <span class="self-center text-xl font-bold whitespace-nowrap text-gray-900">Pet Hotel</span>
+                <span class="self-center text-xl font-bold whitespace-nowrap text-gray-900">{{ __('messages.app_name') }}</span>
             </a>
             
-            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse gap-2">
+            <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse gap-2">
+
+                <!-- Language Switcher -->
+                <div x-data="{ open: false }" class="relative">
+                    <button @click="open = !open" class="flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none">
+                        <span>{{ strtoupper(app()->getLocale()) }}</span>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+
+                    <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-24 bg-white rounded-md shadow-lg z-20">
+                        <a href="{{ route('lang.switch', 'id') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">ID</a>
+                        <a href="{{ route('lang.switch', 'en') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">EN</a>
+                    </div>
+                </div>
                 @if (Route::has('login'))
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 text-center">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="btn-secondary">Masuk</a>
+                        <a href="{{ route('login') }}" class="btn-secondary">{{ __('messages.login') }}</a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="btn-gradient">Daftar</a>
+                            <a href="{{ route('register') }}" class="btn-gradient">{{ __('messages.register') }}</a>
                         @endif
                     @endauth
                 @endif
@@ -41,24 +54,24 @@
             
             <div class="mr-auto place-self-center lg:col-span-7">
                 <h1 class="heading-1 max-w-2xl mb-4 text-gray-900">
-                    Liburan Tenang, <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">Hewan Peliharaan Senang.</span>
+                    {{ __('messages.hero_title_1') }} <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">{{ __('messages.hero_title_2') }}</span>
                 </h1>
                 <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
-                    Platform terpercaya untuk menitipkan hewan kesayangan Anda dengan fasilitas premium dan perawatan penuh kasih sayang.
+                    {{ __('messages.hero_subtitle') }}
                 </p>
                 
                 <div class="flex flex-wrap gap-3">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-purple-600 hover:bg-purple-700">
-                            Ke Dashboard
+                            {{ __('messages.to_dashboard') }}
                         </a>
                     @else
                         <a href="{{ route('register') }}" class="btn-gradient px-5 py-3 text-base">
-                            Booking Sekarang
+                            {{ __('messages.book_now') }}
                         </a>
                         <a href="{{ route('login') }}" class="btn-secondary px-5 py-3 text-base">
-                            Masuk
+                            {{ __('messages.login') }}
                         </a>
                     @endauth
                 </div>
@@ -80,24 +93,24 @@
                     <div class="w-10 h-10 mb-4 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     </div>
-                    <h3 class="heading-4 mb-2 text-gray-900">Easy Booking</h3>
-                    <p class="text-gray-500 text-sm">Reservasi kamar dengan cepat melalui dashboard pelanggan.</p>
+                    <h3 class="heading-4 mb-2 text-gray-900">{{ __('messages.feature_1_title') }}</h3>
+                    <p class="text-gray-500 text-sm">{{ __('messages.feature_1_desc') }}</p>
                 </div>
 
                 <div class="card-info">
                     <div class="w-10 h-10 mb-4 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
-                    <h3 class="heading-4 mb-2 text-gray-900">Pet Profile</h3>
-                    <p class="text-gray-500 text-sm">Kelola data hewan, riwayat kesehatan, dan makanan.</p>
+                    <h3 class="heading-4 mb-2 text-gray-900">{{ __('messages.feature_2_title') }}</h3>
+                    <p class="text-gray-500 text-sm">{{ __('messages.feature_2_desc') }}</p>
                 </div>
 
                 <div class="card-info">
                     <div class="w-10 h-10 mb-4 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                     </div>
-                    <h3 class="heading-4 mb-2 text-gray-900">Cozy Rooms</h3>
-                    <p class="text-gray-500 text-sm">Pilihan kamar bersih dan nyaman, terpantau real-time.</p>
+                    <h3 class="heading-4 mb-2 text-gray-900">{{ __('messages.feature_3_title') }}</h3>
+                    <p class="text-gray-500 text-sm">{{ __('messages.feature_3_desc') }}</p>
                 </div>
 
             </div>
@@ -106,10 +119,10 @@
 
     <section class="bg-white py-8 border-t border-gray-200 mt-auto">
         <div class="max-w-screen-xl mx-auto px-4 text-center">
-            <p class="text-gray-500 text-xs mb-3">Apakah Anda pengelola hotel?</p>
+            <p class="text-gray-500 text-xs mb-3">{{ __('messages.are_you_admin') }}</p>
             <a href="{{ url('/admin/login') }}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                Masuk ke Halaman Admin
+                {{ __('messages.admin_login_prompt') }}
             </a>
             <p class="mt-8 text-xs text-gray-400">&copy; {{ date('Y') }} Pet Hotel Application.</p>
         </div>
