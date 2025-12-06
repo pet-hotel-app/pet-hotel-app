@@ -6,7 +6,7 @@
                 <div class="p-6">
                     <h3 class="text-lg font-semibold text-gray-800 mb-6">{{ __('messages.pet_information') }}</h3>
 
-                    <form action="{{ route('customer.pets.store') }}" method="POST">
+                    <form action="{{ route('customer.pets.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-4">
@@ -39,6 +39,12 @@
                             <label for="age" class="block text-sm font-medium text-gray-700 mb-2">{{ __('messages.age_years') }}</label>
                             <input type="number" name="age" id="age" value="{{ old('age') }}" min="0" step="0.1" class="w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 @error('age') border-red-500 @enderror">
                             @error('age')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="image" class="block text-sm font-medium text-gray-700 mb-2">{{ __('messages.pet_image') }}</label>
+                            <input type="file" name="image" id="image" class="w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 @error('image') border-red-500 @enderror">
+                            @error('image')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="mb-6">

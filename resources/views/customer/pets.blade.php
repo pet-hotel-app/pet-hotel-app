@@ -19,9 +19,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         @forelse($pets as $pet)
                         <div class="border rounded-lg overflow-hidden hover:shadow-lg transition">
-                            <div class="bg-gradient-to-br from-pink-400 to-yellow-300 h-32 flex items-center justify-center">
-                                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            </div>
+                            <img src="{{ str_starts_with($pet->image, 'images/pets') ? asset('storage/' . $pet->image) : asset('image/' . basename($pet->image)) }}" alt="{{ $pet->name }}" class="h-32 w-full object-cover">
                             <div class="p-4">
                                 <h4 class="text-xl font-bold text-gray-900 mb-2">{{ $pet->name }}</h4>
                                 <div class="space-y-1 text-sm text-gray-600 mb-4">

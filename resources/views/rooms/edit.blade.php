@@ -4,7 +4,7 @@
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
-                    <form action="{{ route('rooms.update', $room) }}" method="POST">
+                    <form action="{{ route('rooms.update', $room) }}" method="POST" enctype="multipart/form-data">
                         @csrf @method('PUT')
                         <div class="mb-4">
                             <label for="code" class="block text-sm font-medium text-gray-700 mb-2">{{ __('messages.room_code') }} *</label>
@@ -36,6 +36,16 @@
                                 <option value="maintenance" {{ old('status', $room->status) == 'maintenance' ? 'selected' : '' }}>{{ __('messages.maintenance') }}</option>
                             </select>
                         </div>
+                        <div class="mb-4">
+                            <label for="image" class="block text-sm font-medium text-gray-700 mb-2">{{ __('messages.room_image') }}</label>
+                            <div class="mb-2">
+                                <img src="{{ str_starts_with($room->image, 'images/rooms') ? asset('storage/' . $room->image) : asset($room->image) }}" alt="{{ $room->code }}" class="h-32 w-auto object-cover rounded-md">
+                            </div>
+                            <input type="file" name="image" id="image" class="w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 @error('image') border-red-500 @enderror">
+                            <p class="mt-1 text-xs text-gray-500">{{ __('messages.leave_blank_to_keep_current_image') }}</p>
+                            @error('image')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
+                        </div>
+
                         <div class="mb-6">
                             <label for="notes" class="block text-sm font-medium text-gray-700 mb-2">{{ __('messages.notes') }}</label>
                             <textarea name="notes" id="notes" rows="3" class="w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500">{{ old('notes', $room->notes) }}</textarea>

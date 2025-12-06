@@ -9,6 +9,7 @@ use App\Models\Owner;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class CustomerController extends Controller
 {
@@ -126,10 +127,26 @@ class CustomerController extends Controller
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'address' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $owner->update($data);
-        $user->update(['name' => $data['name']]);
+        if ($request->hasFile('image')) {
+            if ($user->image && $user->image != 'images/default-profile.png') {
+                Storage::disk('public')->delete($user->image);
+            }
+            $path = $request->file('image')->store('images/profile', 'public');
+            $user->image = $path;
+        }
+
+        $ownerData = [
+            'name' => $data['name'],
+            'phone' => $data['phone'],
+            'address' => $data['address'],
+        ];
+
+        $owner->update($ownerData);
+        $user->name = $data['name'];
+        $user->save();
 
         return redirect()->route('customer.profile')->with('success', __('messages.profile_updated'));
     }

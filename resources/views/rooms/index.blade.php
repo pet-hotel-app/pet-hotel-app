@@ -23,6 +23,7 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">{{ __('messages.image') }}</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">{{ __('messages.room_number') }}</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">{{ __('messages.type') }}</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">{{ __('messages.price_per_night') }}</th>
@@ -34,6 +35,7 @@
                             <tbody class="bg-white divide-y divide-gray-200">
                                 @forelse($rooms as $room)
                                     <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap"><img src="{{ str_starts_with($room->image, 'images/rooms') ? asset('storage/' . $room->image) : asset($room->image) }}" alt="{{ $room->code }}" class="h-10 w-10 object-cover rounded-md"></td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $room->code }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $room->type ?? '-' }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Rp {{ number_format($room->rate_per_day, 0, ',', '.') }}</td>

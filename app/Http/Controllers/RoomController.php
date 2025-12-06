@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RoomController extends Controller
 {
@@ -26,8 +27,14 @@ class RoomController extends Controller
             'capacity' => 'required|integer|min:1',
             'rate_per_day' => 'required|numeric|min:0',
             'notes' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images/rooms', 'public');
+            $data['image'] = $path;
+        }
+
         $data['status'] = 'available';
 
         Room::create($data);
@@ -53,7 +60,16 @@ class RoomController extends Controller
             'rate_per_day' => 'required|numeric|min:0',
             'status' => 'required|in:available,occupied,maintenance',
             'notes' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            if ($room->image && $room->image != 'images/default-room.png') {
+                Storage::disk('public')->delete($room->image);
+            }
+            $path = $request->file('image')->store('images/rooms', 'public');
+            $data['image'] = $path;
+        }
 
         $room->update($data);
         return redirect()->route('rooms.index')->with('success', __('messages.room_updated'));

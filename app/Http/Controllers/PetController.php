@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pet;
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PetController extends Controller
 {
@@ -29,7 +30,13 @@ class PetController extends Controller
             'breed' => 'nullable|string',
             'age' => 'nullable|integer',
             'notes' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images/pets', 'public');
+            $data['image'] = $path;
+        }
 
         Pet::create($data);
         return redirect()->route('pets.index')->with('success', __('messages.pet_added'));
@@ -55,7 +62,17 @@ class PetController extends Controller
             'breed' => 'nullable|string',
             'age' => 'nullable|integer',
             'notes' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            // Delete old image if it exists and is not the default
+            if ($pet->image && $pet->image != 'images/default-pet.png') {
+                Storage::disk('public')->delete($pet->image);
+            }
+            $path = $request->file('image')->store('images/pets', 'public');
+            $data['image'] = $path;
+        }
 
         $pet->update($data);
         return redirect()->route('pets.index')->with('success', __('messages.pet_updated'));
