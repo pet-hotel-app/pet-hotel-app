@@ -191,7 +191,13 @@ class CustomerController extends Controller
             'breed' => 'nullable|string|max:255',
             'age' => 'nullable|numeric|min:0',
             'notes' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images/pets', 'public');
+            $data['image'] = $path;
+        }
 
         $data['owner_id'] = $owner->id;
         Pet::create($data);
@@ -228,7 +234,16 @@ class CustomerController extends Controller
             'breed' => 'nullable|string|max:255',
             'age' => 'nullable|numeric|min:0',
             'notes' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            if ($pet->image && $pet->image != 'images/default-pet.png') {
+                Storage::disk('public')->delete($pet->image);
+            }
+            $path = $request->file('image')->store('images/pets', 'public');
+            $data['image'] = $path;
+        }
 
         $pet->update($data);
 

@@ -17,7 +17,7 @@
                                                     <div class="mb-4">
                             <label for="image" class="block text-sm font-medium text-gray-700 mb-2">{{ __('messages.profile_image') }}</label>
                             <div class="mt-2 flex items-center gap-4">
-                                <img src="{{ str_starts_with(Auth::user()->image, 'images/profile') ? asset('storage/' . Auth::user()->image) : asset('image/' . basename(Auth::user()->image)) }}" alt="Profile Image" class="h-20 w-20 object-cover rounded-full">
+                                <img src="{{ str_starts_with(Auth::user()->image, 'images/profile') ? asset('storage/' . Auth::user()->image) : asset('image/' . basename(Auth::user()->image)) }}" alt="Profile Image" class="h-20 w-20 object-cover rounded-full aspect-square">
                                 <input type="file" name="image" id="image" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-50 file:text-pink-700 hover:file:bg-pink-100">
                             </div>
                         </div>

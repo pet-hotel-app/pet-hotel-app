@@ -10,7 +10,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 @forelse($rooms as $room)
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
-                    <img src="{{ str_starts_with($room->image, 'images/rooms') ? asset('storage/' . $room->image) : asset('image/' . basename($room->image)) }}" alt="{{ $room->code }}" class="h-32 w-full object-cover">
+                    <img src="{{ str_starts_with($room->image, 'images/rooms') ? asset('storage/' . $room->image) : asset('image/' . basename($room->image)) }}" alt="{{ $room->code }}" class="w-full object-cover aspect-[4/3]">
                     <div class="p-6">
                         <h4 class="text-xl font-bold text-gray-900 mb-2">{{ __('messages.room') }} {{ $room->code }}</h4>
                         <p class="text-gray-600 mb-4">{{ $room->type ? __('messages.' . strtolower($room->type)) : __('messages.standard') }}</p>
