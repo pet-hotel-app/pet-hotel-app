@@ -1,7 +1,7 @@
 <x-layout.admin>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Chat with ') }} {{ $customer->name }}
+            {{ __('messages.chat_with') }} {{ $customer->name }}
         </h2>
     </x-slot>
 
@@ -21,8 +21,8 @@
                             </div>
                         @empty
                             <div class="text-center text-gray-500">
-                                <p>No messages in this conversation yet.</p>
-                                <p>Start the conversation by sending a message.</p>
+                                <p>{{ __('messages.no_messages_yet') }}</p>
+                                <p>{{ __('messages.start_conversation') }}</p>
                             </div>
                         @endforelse
                     </div>
@@ -34,9 +34,9 @@
                             <textarea name="message" 
                                       rows="2" 
                                       class="form-input flex-grow mr-4" 
-                                      placeholder="Type your message here..."></textarea>
+                                      placeholder="{{ __('messages.type_message_placeholder') }}"></textarea>
                             <button type="submit" class="btn-primary">
-                                Send
+                                {{ __('messages.send') }}
                             </button>
                         </div>
                         @error('message')
@@ -46,7 +46,7 @@
 
                     <div class="mt-6">
                         <a href="{{ route('messages.index') }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                            &larr; Back to all conversations
+                            &larr; {{ __('messages.back_to_conversations') }}
                         </a>
                     </div>
                 </div>

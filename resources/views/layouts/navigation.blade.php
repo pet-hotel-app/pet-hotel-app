@@ -72,8 +72,15 @@
                 </div>
             </div>
 
-            <!-- Settings Dropdown -->
+            <!-- Right Side Of Navbar -->
             <div class="hidden sm:flex sm:items-center sm:ms-6 gap-4">
+                <!-- Language Switcher -->
+                <div class="flex items-center space-x-2">
+                    <a href="{{ route('lang.switch', 'id') }}" class="text-sm font-bold {{ app()->getLocale() == 'id' ? 'text-blue-500' : 'text-gray-500' }}">ID</a>
+                    <span class="text-gray-300">|</span>
+                    <a href="{{ route('lang.switch', 'en') }}" class="text-sm font-bold {{ app()->getLocale() == 'en' ? 'text-blue-500' : 'text-gray-500' }}">EN</a>
+                </div>
+
                 <!-- Notification Bell -->
                 <a href="@if(Auth::user()->isAdmin()) # @else {{ route('customer.notifications.index') }} @endif" class="relative">
                     <svg class="w-6 h-6 text-gray-600 hover:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,6 +97,7 @@
                     <span x-show="messageCount > 0" x-text="messageCount" class="absolute -top-1 -right-1 bg-pink-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold"></span>
                 </a>
 
+                <!-- Settings Dropdown -->
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -197,6 +205,17 @@
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
+            <!-- Language Switcher -->
+            <div class="px-4 py-3">
+                <div class="flex items-center justify-center space-x-4">
+                    <a href="{{ route('lang.switch', 'id') }}" class="px-3 py-1 rounded-md text-sm font-medium {{ app()->getLocale() == 'id' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:bg-gray-100' }}">
+                        ID
+                    </a>
+                    <a href="{{ route('lang.switch', 'en') }}" class="px-3 py-1 rounded-md text-sm font-medium {{ app()->getLocale() == 'en' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:bg-gray-100' }}">
+                        EN
+                    </a>
+                </div>
+            </div>
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>

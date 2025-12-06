@@ -32,7 +32,7 @@ class PetController extends Controller
         ]);
 
         Pet::create($data);
-        return redirect()->route('pets.index')->with('success', 'Pet added successfully!');
+        return redirect()->route('pets.index')->with('success', __('messages.pet_added'));
     }
 
     public function show(Pet $pet)
@@ -58,12 +58,12 @@ class PetController extends Controller
         ]);
 
         $pet->update($data);
-        return redirect()->route('pets.index')->with('success', 'Pet updated successfully!');
+        return redirect()->route('pets.index')->with('success', __('messages.pet_updated'));
     }
 
     public function destroy(Pet $pet)
     {
         $pet->delete();
-        return redirect()->route('pets.index')->with('success', 'Pet deleted successfully!');
+        return redirect()->route('pets.index')->with('success', __('messages.pet_deleted'));
     }
 }

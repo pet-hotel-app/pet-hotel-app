@@ -12,12 +12,12 @@
                 
                 <!-- Welcome Text -->
                 <h1 class="text-4xl font-bold text-gray-800 mb-3">
-                    Welcome Back!
+                    {{ __('messages.login_welcome') }}
                 </h1>
                 
                 <!-- Subtitle -->
                 <p class="text-gray-600 text-lg">
-                    Your pet's home away from home
+                    {{ __('messages.login_subtitle') }}
                 </p>
             </div>
         </div>
@@ -37,12 +37,12 @@
 
                 <!-- Title -->
                 <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">
-                    Pet Hotel
+                    {{ __('messages.app_name') }}
                 </h2>
                 
                 <!-- Subtitle -->
                 <p class="text-center text-gray-500 text-base mb-8">
-                    Sign in to your account
+                    {{ __('messages.login_title') }}
                 </p>
 
                 <!-- Session Status -->
@@ -55,7 +55,7 @@
                     <!-- Email Address -->
                     <div class="mb-5">
                         <label for="email" class="form-label mb-2">
-                            Email Address
+                            {{ __('messages.form_email') }}
                         </label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -70,7 +70,7 @@
                                    required 
                                    autofocus 
                                    autocomplete="username"
-                                   placeholder="your@email.com"
+                                   placeholder="{{ __('messages.form_email_placeholder') }}"
                                    class="form-input-icon">
                         </div>
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -79,7 +79,7 @@
                     <!-- Password -->
                     <div class="mb-5">
                         <label for="password" class="form-label mb-2">
-                            Password
+                            {{ __('messages.form_password') }}
                         </label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -92,7 +92,7 @@
                                    name="password" 
                                    required 
                                    autocomplete="current-password"
-                                   placeholder="••••••••"
+                                   placeholder="{{ __('messages.form_password_placeholder') }}"
                                    class="form-input-icon">
                         </div>
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
@@ -104,13 +104,13 @@
                             <input type="checkbox" 
                                    name="remember" 
                                    class="form-checkbox">
-                            <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                            <span class="ml-2 text-sm text-gray-600">{{ __('messages.form_remember_me') }}</span>
                         </label>
                         
                         @if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}" 
                                class="text-link">
-                                Forgot password?
+                                {{ __('messages.form_forgot_password') }}
                             </a>
                         @endif
                     </div>
@@ -118,16 +118,16 @@
                     <!-- Submit Button -->
                     <button type="submit" 
                             class="btn-gradient w-full">
-                        Sign In
+                        {{ __('messages.form_sign_in') }}
                     </button>
 
                     <!-- Register Link -->
                     @if(!$isAdmin)
                     <div class="mt-6 text-center">
-                        <span class="text-sm text-gray-600">Don't have an account?</span>
+                        <span class="text-sm text-gray-600">{{ __('messages.form_no_account') }}</span>
                         <a href="{{ route('customer.register') }}" 
                            class="text-link ml-1">
-                            Sign up
+                            {{ __('messages.form_sign_up') }}
                         </a>
                     </div>
                     @endif
@@ -141,13 +141,13 @@
             <a href="{{ route('admin.login') }}" 
                class="toggle-button text-gray-800 px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-shadow font-semibold text-sm"
                style="background-color: #FFE489;">
-                Admin View
+                {{ __('messages.view_admin') }}
             </a>
             @else
             <a href="{{ route('customer.login') }}" 
                class="toggle-button text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-shadow font-semibold text-sm"
                style="background-color: #FFB6C9;">
-                Customer View
+                {{ __('messages.view_customer') }}
             </a>
             @endif
         </div>

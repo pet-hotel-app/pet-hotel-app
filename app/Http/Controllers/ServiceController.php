@@ -22,6 +22,6 @@ class ServiceController extends Controller
         ]);
 
         Service::create($data);
-        return redirect()->route('services.index')->with('success', 'Service created');
+        return redirect()->route('services.index')->with('success', __('messages.service_created'));
     }
 }

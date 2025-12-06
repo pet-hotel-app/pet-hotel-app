@@ -15,6 +15,13 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased">
+        <div class="absolute top-0 right-0 mt-4 mr-4">
+            <div class="flex items-center space-x-2">
+                <a href="{{ route('lang.switch', 'id') }}" class="text-sm font-bold {{ app()->getLocale() == 'id' ? 'text-blue-500' : 'text-gray-500' }}">ID</a>
+                <span class="text-gray-300">|</span>
+                <a href="{{ route('lang.switch', 'en') }}" class="text-sm font-bold {{ app()->getLocale() == 'en' ? 'text-blue-500' : 'text-gray-500' }}">EN</a>
+            </div>
+        </div>
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
             <div>
                 <a href="/">

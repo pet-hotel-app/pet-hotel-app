@@ -65,7 +65,7 @@ class MessageController extends Controller
             ]),
         ]);
 
-        return redirect()->route('customer.messages.index')->with('success', 'Message sent!');
+        return redirect()->route('customer.messages.index')->with('success', __('messages.message_sent'));
     }
 
     // Admin: View all conversations
@@ -135,7 +135,7 @@ class MessageController extends Controller
             ]),
         ]);
 
-        return redirect()->route('messages.show', $customer)->with('success', 'Message sent!');
+        return redirect()->route('messages.show', $customer)->with('success', __('messages.message_sent'));
     }
 
     // API: Get unread message count

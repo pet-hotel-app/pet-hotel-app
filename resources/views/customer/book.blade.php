@@ -1,14 +1,14 @@
 <x-app-layout>
-    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Book Room') }} {{ $room->code }}</h2></x-slot>
+    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('messages.book_room') }} {{ $room->code }}</h2></x-slot>
     <div class="py-12">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
                     <!-- Room Info -->
                     <div class="mb-6 p-4 bg-gradient-to-r from-pink-50 to-yellow-50 rounded-lg">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Room {{ $room->code }}</h3>
-                        <p class="text-gray-700">{{ $room->type ?? 'Standard' }} - Capacity: {{ $room->capacity }} pet(s)</p>
-                        <p class="text-2xl font-bold text-pink-600 mt-2">Rp {{ number_format($room->rate_per_day, 0, ',', '.') }}/day</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">{{ __('messages.room') }} {{ $room->code }}</h3>
+                        <p class="text-gray-700">{{ $room->type ? __('messages.' . strtolower($room->type)) : __('messages.standard') }} - {{ __('messages.capacity_pets', ['count' => $room->capacity]) }}</p>
+                        <p class="text-2xl font-bold text-pink-600 mt-2">Rp {{ number_format($room->rate_per_day, 0, ',', '.') }}{{ __('messages.per_day') }}</p>
                     </div>
 
                     @if(session('success'))
@@ -20,9 +20,9 @@
                         <input type="hidden" name="room_id" value="{{ $room->id }}">
 
                         <div class="mb-4">
-                            <label for="pet_id" class="block text-sm font-medium text-gray-700 mb-2">Select Your Pet *</label>
+                            <label for="pet_id" class="block text-sm font-medium text-gray-700 mb-2">{{ __('messages.select_pet') }} *</label>
                             <select name="pet_id" id="pet_id" required class="w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 @error('pet_id') border-red-500 @enderror">
-                                <option value="">Choose a pet</option>
+                                <option value="">{{ __('messages.choose_a_pet') }}</option>
                                 @foreach($pets as $pet)
                                     <option value="{{ $pet->id }}" {{ old('pet_id') == $pet->id ? 'selected' : '' }}>
                                         {{ $pet->name }} ({{ $pet->species ?? 'Pet' }})
@@ -31,25 +31,25 @@
                             </select>
                             @error('pet_id')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                             @if($pets->count() == 0)
-                                <p class="mt-2 text-sm text-yellow-600">You don't have any pets yet. Please add a pet in your profile first.</p>
+                                <p class="mt-2 text-sm text-yellow-600">{{ __('messages.no_pets_to_book') }}</p>
                             @endif
                         </div>
 
                         <div class="mb-4">
-                            <label for="start_date" class="block text-sm font-medium text-gray-700 mb-2">Check-in Date *</label>
+                            <label for="start_date" class="block text-sm font-medium text-gray-700 mb-2">{{ __('messages.check_in_date') }} *</label>
                             <input type="date" name="start_date" id="start_date" value="{{ old('start_date') }}" required min="{{ date('Y-m-d') }}" class="w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 @error('start_date') border-red-500 @enderror">
                             @error('start_date')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="mb-6">
-                            <label for="end_date" class="block text-sm font-medium text-gray-700 mb-2">Check-out Date *</label>
+                            <label for="end_date" class="block text-sm font-medium text-gray-700 mb-2">{{ __('messages.check_out_date') }} *</label>
                             <input type="date" name="end_date" id="end_date" value="{{ old('end_date') }}" required min="{{ date('Y-m-d') }}" class="w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 @error('end_date') border-red-500 @enderror">
                             @error('end_date')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="flex items-center justify-end gap-4">
-                            <a href="{{ route('customer.rooms') }}" class="inline-flex items-center px-4 py-2 bg-gray-300 border border-transparent rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-400 transition">Back</a>
-                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-[#FFB6C9] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-pink-500 transition">Confirm Booking</button>
+                            <a href="{{ route('customer.rooms') }}" class="inline-flex items-center px-4 py-2 bg-gray-300 border border-transparent rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-400 transition">{{ __('messages.back') }}</a>
+                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-[#FFB6C9] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-pink-500 transition">{{ __('messages.confirm_booking') }}</button>
                         </div>
                     </form>
                 </div>

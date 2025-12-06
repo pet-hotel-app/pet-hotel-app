@@ -12,12 +12,12 @@
                 
                 <!-- Welcome Text -->
                 <h1 class="text-4xl font-bold text-gray-800 mb-3">
-                    Join Us!
+                    {{ __('messages.register_welcome') }}
                 </h1>
                 
                 <!-- Subtitle -->
                 <p class="text-gray-600 text-lg">
-                    Create your account today
+                    {{ __('messages.register_subtitle') }}
                 </p>
             </div>
         </div>
@@ -37,12 +37,12 @@
 
                 <!-- Title -->
                 <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">
-                    Pet Hotel
+                    {{ __('messages.app_name') }}
                 </h2>
                 
                 <!-- Subtitle -->
                 <p class="text-center text-gray-500 text-base mb-8">
-                    {{ $isAdmin ? 'Register as administrator' : 'Create your account' }}
+                    {{ $isAdmin ? __('messages.register_admin_title') : __('messages.register_customer_title') }}
                 </p>
 
                 <!-- Form -->
@@ -52,7 +52,7 @@
                     <!-- Name -->
                     <div class="mb-5">
                         <label for="name" class="form-label mb-2">
-                            Full Name
+                            {{ __('messages.form_full_name') }}
                         </label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -67,7 +67,7 @@
                                    required 
                                    autofocus 
                                    autocomplete="name"
-                                   placeholder="John Doe"
+                                   placeholder="{{ __('messages.form_full_name_placeholder') }}"
                                    class="form-input-icon">
                         </div>
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
@@ -76,7 +76,7 @@
                     <!-- Email Address -->
                     <div class="mb-5">
                         <label for="email" class="form-label mb-2">
-                            Email Address
+                            {{ __('messages.form_email') }}
                         </label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -90,7 +90,7 @@
                                    value="{{ old('email') }}" 
                                    required 
                                    autocomplete="username"
-                                   placeholder="your@email.com"
+                                   placeholder="{{ __('messages.form_email_placeholder') }}"
                                    class="form-input-icon">
                         </div>
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -99,7 +99,7 @@
                     <!-- Password -->
                     <div class="mb-5">
                         <label for="password" class="form-label mb-2">
-                            Password
+                            {{ __('messages.form_password') }}
                         </label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -112,7 +112,7 @@
                                    name="password" 
                                    required 
                                    autocomplete="new-password"
-                                   placeholder="••••••••"
+                                   placeholder="{{ __('messages.form_password_placeholder') }}"
                                    class="form-input-icon">
                         </div>
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
@@ -121,7 +121,7 @@
                     <!-- Confirm Password -->
                     <div class="mb-6">
                         <label for="password_confirmation" class="form-label mb-2">
-                            Confirm Password
+                            {{ __('messages.form_confirm_password') }}
                         </label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -134,7 +134,7 @@
                                    name="password_confirmation" 
                                    required 
                                    autocomplete="new-password"
-                                   placeholder="••••••••"
+                                   placeholder="{{ __('messages.form_password_placeholder') }}"
                                    class="form-input-icon">
                         </div>
                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
@@ -143,15 +143,15 @@
                     <!-- Submit Button -->
                     <button type="submit" 
                             class="btn-gradient w-full">
-                        Create Account
+                        {{ __('messages.form_create_account') }}
                     </button>
 
                     <!-- Login Link -->
                     <div class="mt-6 text-center">
-                        <span class="text-sm text-gray-600">Already have an account?</span>
+                        <span class="text-sm text-gray-600">{{ __('messages.form_have_account') }}</span>
                         <a href="{{ $isAdmin ? route('admin.login') : route('customer.login') }}" 
                            class="text-link ml-1">
-                            Sign in
+                            {{ __('messages.form_sign_in') }}
                         </a>
                     </div>
                 </form>
@@ -164,13 +164,13 @@
             <a href="{{ route('admin.register') }}" 
                class="toggle-button text-gray-800 px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-shadow font-semibold text-sm"
                style="background-color: #FFE489;">
-                Admin View
+                {{ __('messages.view_admin') }}
             </a>
             @else
             <a href="{{ route('customer.register') }}" 
                class="toggle-button text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-shadow font-semibold text-sm"
                style="background-color: #FFB6C9;">
-                Customer View
+                {{ __('messages.view_customer') }}
             </a>
             @endif
         </div>

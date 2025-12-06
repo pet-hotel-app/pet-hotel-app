@@ -65,7 +65,7 @@ class BookingController extends Controller
             'paid' => false,
         ]);
 
-        return redirect()->route('bookings.index')->with('success','Booking created successfully!');
+        return redirect()->route('bookings.index')->with('success', __('messages.booking_created'));
     }
 
     public function show(Booking $booking)
@@ -144,7 +144,7 @@ class BookingController extends Controller
             }
         }
 
-        return redirect()->route('bookings.index')->with('success', 'Booking updated successfully!');
+        return redirect()->route('bookings.index')->with('success', __('messages.booking_updated'));
 
     }
 
@@ -156,6 +156,6 @@ class BookingController extends Controller
         }
         
         $booking->delete();
-        return redirect()->route('bookings.index')->with('success', 'Booking deleted successfully!');
+        return redirect()->route('bookings.index')->with('success', __('messages.booking_deleted'));
     }
 }

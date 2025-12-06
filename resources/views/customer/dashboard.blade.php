@@ -11,14 +11,14 @@
                     <div class="flex flex-col md:flex-row items-center justify-between">
                         <div class="text-white mb-6 md:mb-0">
                             <h1 class="text-4xl md:text-5xl font-extrabold mb-3 animate-fade-in">
-                                Welcome back, {{ Auth::user()->name }}! 👋
+                                {{ __('messages.customer_dashboard_welcome', ['name' => Auth::user()->name]) }}
                             </h1>
-                            <p class="text-xl text-white/90 mb-6">Your pets are waiting for their next adventure</p>
+                            <p class="text-xl text-white/90 mb-6">{{ __('messages.customer_dashboard_subtitle') }}</p>
                             <a href="{{ route('customer.rooms') }}" class="inline-flex items-center px-8 py-4 bg-white text-purple-600 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200">
                                 <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                                 </svg>
-                                Book a Room Now
+                                {{ __('messages.book_a_room_now') }}
                             </a>
                         </div>
                         <div class="hidden md:block">
@@ -48,7 +48,7 @@
                                 </svg>
                             </a>
                         </div>
-                        <p class="text-white/90 text-sm font-medium mb-1">My Pets</p>
+                        <p class="text-white/90 text-sm font-medium mb-1">{{ __('messages.my_pets') }}</p>
                         <p class="text-white text-4xl font-bold">{{ $myPets }}</p>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                                 </svg>
                             </a>
                         </div>
-                        <p class="text-white/90 text-sm font-medium mb-1">My Bookings</p>
+                        <p class="text-white/90 text-sm font-medium mb-1">{{ __('messages.my_bookings') }}</p>
                         <p class="text-white text-4xl font-bold">{{ $myBookings }}</p>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                                 </svg>
                             </a>
                         </div>
-                        <p class="text-white/90 text-sm font-medium mb-1">Messages</p>
+                        <p class="text-white/90 text-sm font-medium mb-1">{{ __('messages.messages') }}</p>
                         <p class="text-white text-4xl font-bold">
                             {{ \App\Models\Message::where('receiver_id', Auth::id())->whereNull('read_at')->count() }}
                         </p>
@@ -113,7 +113,7 @@
                                 </svg>
                             </a>
                         </div>
-                        <p class="text-white/90 text-sm font-medium mb-1">Invoices</p>
+                        <p class="text-white/90 text-sm font-medium mb-1">{{ __('messages.invoices') }}</p>
                         <p class="text-white text-4xl font-bold">
                             @php
                                 $owner = \App\Models\Owner::where('email', Auth::user()->email)->first();
@@ -140,8 +140,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-white mb-2 transition-colors">Book a Room</h3>
-                        <p class="text-gray-600 group-hover:text-white/90 transition-colors">Find the perfect room for your pet</p>
+                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-white mb-2 transition-colors">{{ __('messages.book_a_room') }}</h3>
+                        <p class="text-gray-600 group-hover:text-white/90 transition-colors">{{ __('messages.find_perfect_room') }}</p>
                     </div>
                 </a>
 
@@ -156,8 +156,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-white mb-2 transition-colors">Manage Pets</h3>
-                        <p class="text-gray-600 group-hover:text-white/90 transition-colors">Add or update your pet information</p>
+                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-white mb-2 transition-colors">{{ __('messages.manage_pets') }}</h3>
+                        <p class="text-gray-600 group-hover:text-white/90 transition-colors">{{ __('messages.manage_pets_desc') }}</p>
                     </div>
                 </a>
 
@@ -172,8 +172,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-white mb-2 transition-colors">My Profile</h3>
-                        <p class="text-gray-600 group-hover:text-white/90 transition-colors">Update your account information</p>
+                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-white mb-2 transition-colors">{{ __('messages.my_profile') }}</h3>
+                        <p class="text-gray-600 group-hover:text-white/90 transition-colors">{{ __('messages.my_profile_desc') }}</p>
                     </div>
                 </a>
             </div>
@@ -186,7 +186,7 @@
                         <svg class="w-7 h-7 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
-                        Recent Bookings
+                        {{ __('messages.recent_bookings') }}
                     </h3>
                 </div>
                 <div class="p-6">
@@ -210,14 +210,14 @@
                                 </div>
                             </div>
                             <span class="px-4 py-2 rounded-full text-sm font-bold shadow-sm {{ $booking->status == 'confirmed' ? 'bg-green-100 text-green-700' : ($booking->status == 'pending' ? 'bg-yellow-100 text-yellow-700' : 'bg-gray-100 text-gray-700') }}">
-                                {{ ucfirst($booking->status) }}
+                                {{ __('messages.' . $booking->status) }}
                             </span>
                         </div>
                         @endforeach
                     </div>
                     <div class="mt-6 text-center">
                         <a href="{{ route('customer.bookings') }}" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-full hover:from-pink-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 shadow-lg">
-                            View All Bookings
+                            {{ __('messages.view_all_bookings') }}
                             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                             </svg>
@@ -234,13 +234,13 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">No Bookings Yet</h3>
-                    <p class="text-gray-600 mb-6">Start your pet's adventure by booking a room today!</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">{{ __('messages.no_bookings_yet_customer') }}</h3>
+                    <p class="text-gray-600 mb-6">{{ __('messages.no_bookings_yet_desc') }}</p>
                     <a href="{{ route('customer.rooms') }}" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold rounded-full hover:from-pink-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 shadow-lg">
                         <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                         </svg>
-                        Book Your First Room
+                        {{ __('messages.book_first_room') }}
                     </a>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <x-layout.admin>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Customer Messages') }}
+            {{ __('messages.customer_messages') }}
         </h2>
     </x-slot>
 
@@ -9,11 +9,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Conversations</h3>
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('messages.conversations') }}</h3>
 
                     <div class="border-t border-gray-200">
                         @if($customers->isEmpty())
-                            <p class="p-4 text-gray-500">No conversations found.</p>
+                            <p class="p-4 text-gray-500">{{ __('messages.no_conversations_found') }}</p>
                         @else
                             <ul role="list" class="divide-y divide-gray-200">
                                 @foreach ($customers as $customer)
@@ -42,7 +42,7 @@
                                                                 @endphp
                                                                 @if($lastMessage)
                                                                 <p class="text-sm text-gray-900">
-                                                                    Last message on <time datetime="{{ $lastMessage->created_at->toIso8601String() }}">{{ $lastMessage->created_at->format('M d, Y') }}</time>
+                                                                    {{ __('messages.last_message_on') }} <time datetime="{{ $lastMessage->created_at->toIso8601String() }}">{{ $lastMessage->created_at->format('M d, Y') }}</time>
                                                                 </p>
                                                                 <p class="mt-2 flex items-center text-sm text-gray-500">
                                                                     {{ Str::limit($lastMessage->message, 40) }}

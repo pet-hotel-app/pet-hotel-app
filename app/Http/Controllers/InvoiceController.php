@@ -60,7 +60,7 @@ class InvoiceController extends Controller
             }
         }
         
-        return redirect()->route('invoices.show', $invoice)->with('success','Invoice updated');
+        return redirect()->route('invoices.show', $invoice)->with('success', __('messages.invoice_updated'));
 
     }
 }

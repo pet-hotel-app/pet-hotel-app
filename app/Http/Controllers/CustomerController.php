@@ -105,7 +105,7 @@ class CustomerController extends Controller
             ]);
         }
 
-        return redirect()->route('customer.bookings')->with('success', 'Booking created successfully! Please wait for confirmation.');
+        return redirect()->route('customer.bookings')->with('success', __('messages.booking_created'));
     }
 
     public function profile()
@@ -131,7 +131,7 @@ class CustomerController extends Controller
         $owner->update($data);
         $user->update(['name' => $data['name']]);
 
-        return redirect()->route('customer.profile')->with('success', 'Profile updated successfully!');
+        return redirect()->route('customer.profile')->with('success', __('messages.profile_updated'));
     }
 
     public function myBookings()
@@ -179,7 +179,7 @@ class CustomerController extends Controller
         $data['owner_id'] = $owner->id;
         Pet::create($data);
 
-        return redirect()->route('customer.pets.index')->with('success', 'Pet added successfully!');
+        return redirect()->route('customer.pets.index')->with('success', __('messages.pet_added'));
     }
 
     public function editPet(Pet $pet)
@@ -215,7 +215,7 @@ class CustomerController extends Controller
 
         $pet->update($data);
 
-        return redirect()->route('customer.pets.index')->with('success', 'Pet updated successfully!');
+        return redirect()->route('customer.pets.index')->with('success', __('messages.pet_updated'));
     }
 
     public function deletePet(Pet $pet)
@@ -234,12 +234,12 @@ class CustomerController extends Controller
             ->count();
 
         if ($activeBookings > 0) {
-            return redirect()->route('customer.pets.index')->with('error', 'Cannot delete pet with active bookings.');
+            return redirect()->route('customer.pets.index')->with('error', __('messages.pet_delete_has_booking'));
         }
 
         $pet->delete();
 
-        return redirect()->route('customer.pets.index')->with('success', 'Pet deleted successfully!');
+        return redirect()->route('customer.pets.index')->with('success', __('messages.pet_deleted'));
     }
 
     // Notification Methods
@@ -270,7 +270,7 @@ class CustomerController extends Controller
             ->whereNull('read_at')
             ->update(['read_at' => now()]);
 
-        return redirect()->back()->with('success', 'All notifications marked as read.');
+        return redirect()->back()->with('success', __('messages.notifications_read'));
     }
 
     // Invoice Methods
