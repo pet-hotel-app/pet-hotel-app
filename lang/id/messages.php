@@ -44,6 +44,11 @@ return [
     'form_have_account' => 'Sudah punya akun?',
     'view_admin' => 'Tampilan Admin',
     'view_customer' => 'Tampilan Pelanggan',
+    'back_to_home' => 'Kembali ke Beranda',
+
+    'admin_login_welcome' => 'Panel Admin',
+    'admin_login_subtitle' => 'Kelola operasional hotel Anda secara efisien.',
+    'admin_login_title' => 'Masuk ke Panel Admin',
 
     // Flash Messages
     'flash_success' => 'Sukses!',

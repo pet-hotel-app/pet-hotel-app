@@ -44,6 +44,11 @@ return [
     'form_have_account' => 'Already have an account?',
     'view_admin' => 'Admin View',
     'view_customer' => 'Customer View',
+    'back_to_home' => 'Back to Home',
+
+    'admin_login_welcome' => 'Admin Panel',
+    'admin_login_subtitle' => 'Manage your hotel operations efficiently.',
+    'admin_login_title' => 'Sign in to the Admin Panel',
 
     // Flash Messages
     'flash_success' => 'Success!',

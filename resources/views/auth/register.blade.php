@@ -1,5 +1,15 @@
 <x-auth-layout>
     <div class="min-h-screen flex gradient-bg">
+        <!-- Back to Home Button -->
+        <div class="fixed top-6 left-6 z-10">
+            <a href="{{ url('/') }}"
+               class="inline-flex items-center bg-white text-gray-800 px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-shadow font-semibold text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                {{ __('messages.back_to_home') }}
+            </a>
+        </div>
         <!-- Left Panel - Pet Image & Welcome -->
         <div class="hidden lg:flex lg:w-1/2 items-center justify-center p-12">
             <div class="text-center max-w-sm">
@@ -158,21 +168,5 @@
             </div>
         </div>
 
-        <!-- Toggle Button -->
-        <div class="fixed bottom-6 right-6 flex flex-col gap-2">
-            @if(!$isAdmin)
-            <a href="{{ route('admin.register') }}" 
-               class="toggle-button text-gray-800 px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-shadow font-semibold text-sm"
-               style="background-color: #FFE489;">
-                {{ __('messages.view_admin') }}
-            </a>
-            @else
-            <a href="{{ route('customer.register') }}" 
-               class="toggle-button text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-shadow font-semibold text-sm"
-               style="background-color: #FFB6C9;">
-                {{ __('messages.view_customer') }}
-            </a>
-            @endif
-        </div>
     </div>
 </x-auth-layout>
