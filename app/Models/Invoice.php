@@ -13,6 +13,7 @@ class Invoice extends Model
 
     protected $casts = [
         'paid' => 'boolean',
+        'paid_at' => 'datetime',
     ];
 
     public function booking()

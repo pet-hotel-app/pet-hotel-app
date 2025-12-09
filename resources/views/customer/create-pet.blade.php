@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="image" class="block text-sm font-medium text-gray-700 mb-2">{{ __('messages.pet_image') }}</label>
+                            <label for="image" class="block text-sm font-medium text-gray-700 mb-2">Foto Peliharaan</label>
                             <input type="file" name="image" id="image" class="w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 @error('image') border-red-500 @enderror">
                             @error('image')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                         </div>

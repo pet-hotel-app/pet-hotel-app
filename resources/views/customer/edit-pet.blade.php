@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="image" class="block text-sm font-medium text-gray-700 mb-2">{{ __('messages.pet_image') }}</label>
+                            <label for="image" class="block text-sm font-medium text-gray-700 mb-2">Foto Peliharaan</label>
                             <div class="mb-2">
                                 <img src="{{ str_starts_with($pet->image, 'images/pets') ? asset('storage/' . $pet->image) : asset($pet->image) }}" alt="{{ $pet->name }}" class="h-32 w-32 object-cover rounded-md">
                             </div>

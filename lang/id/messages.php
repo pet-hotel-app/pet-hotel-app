@@ -110,6 +110,7 @@ return [
     'delete_owner_confirmation' => 'Apakah Anda yakin ingin menghapus pemilik ini?',
     'no_owners_found' => 'Tidak ada pemilik yang ditemukan.',
     'add_first_owner' => 'Tambahkan pemilik pertama Anda',
+    'all_owners_description' => 'Kelola semua data pemilik hewan peliharaan yang terdaftar.',
 
     // Owner Forms
     'edit_owner' => 'Ubah Pemilik',
@@ -127,6 +128,7 @@ return [
     'delete_pet_confirmation' => 'Apakah Anda yakin ingin menghapus peliharaan ini?',
     'no_pets_found' => 'Tidak ada peliharaan yang ditemukan.',
     'add_first_pet' => 'Tambahkan peliharaan pertama Anda',
+    'all_pets_description' => 'Kelola semua data hewan peliharaan yang terdaftar di sistem.',
 
     // Pet Forms
     'edit_pet' => 'Ubah Peliharaan',
@@ -148,6 +150,7 @@ return [
     'delete_room_confirmation' => 'Hapus kamar ini?',
     'no_rooms_found' => 'Tidak ada kamar yang ditemukan.',
     'add_first_room' => 'Tambahkan kamar pertama Anda',
+    'all_rooms_description' => 'Kelola semua kamar, termasuk tipe, tarif, dan ketersediaan.',
 
     // Room Forms
     'edit_room' => 'Ubah Kamar',
@@ -172,6 +175,7 @@ return [
     'delete_booking_confirmation' => 'Hapus pemesanan ini?',
     'no_bookings_found' => 'Tidak ada pemesanan yang ditemukan.',
     'create_first_booking' => 'Buat pemesanan pertama',
+    'all_bookings_description' => 'Lihat dan kelola semua pemesanan pelanggan.',
     'confirmed' => 'Dikonfirmasi',
     'pending' => 'Menunggu',
     'cancelled' => 'Dibatalkan',
@@ -199,6 +203,7 @@ return [
     'view' => 'Lihat',
     'mark_paid' => 'Tandai Lunas',
     'no_invoices_found' => 'Tidak ada faktur yang ditemukan.',
+    'all_invoices_description' => 'Tinjau dan kelola semua faktur pelanggan.',
 
     // Invoice Detail
     'invoice_detail' => 'Detail Faktur',

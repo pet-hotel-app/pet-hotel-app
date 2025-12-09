@@ -110,6 +110,7 @@ return [
     'delete_owner_confirmation' => 'Are you sure you want to delete this owner?',
     'no_owners_found' => 'No owners found.',
     'add_first_owner' => 'Add your first owner',
+    'all_owners_description' => 'Manage all registered pet owners.',
 
     // Owner Forms
     'edit_owner' => 'Edit Owner',
@@ -127,6 +128,7 @@ return [
     'delete_pet_confirmation' => 'Are you sure you want to delete this pet?',
     'no_pets_found' => 'No pets found.',
     'add_first_pet' => 'Add your first pet',
+    'all_pets_description' => 'Manage all registered pets in the system.',
 
     // Pet Forms
     'edit_pet' => 'Edit Pet',
@@ -148,6 +150,7 @@ return [
     'delete_room_confirmation' => 'Delete this room?',
     'no_rooms_found' => 'No rooms found.',
     'add_first_room' => 'Add your first room',
+    'all_rooms_description' => 'Manage all rooms, including types, rates, and availability.',
 
     // Room Forms
     'edit_room' => 'Edit Room',
@@ -172,6 +175,7 @@ return [
     'delete_booking_confirmation' => 'Delete this booking?',
     'no_bookings_found' => 'No bookings found.',
     'create_first_booking' => 'Create first booking',
+    'all_bookings_description' => 'View and manage all customer bookings.',
     'confirmed' => 'Confirmed',
     'pending' => 'Pending',
     'cancelled' => 'Cancelled',
@@ -199,6 +203,7 @@ return [
     'view' => 'View',
     'mark_paid' => 'Mark Paid',
     'no_invoices_found' => 'No invoices found.',
+    'all_invoices_description' => 'Review and manage all customer invoices.',
 
     // Invoice Detail
     'invoice_detail' => 'Invoice Detail',
