@@ -87,4 +87,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\Message::class, 'receiver_id');
     }
+
+    /**
+     * Get all messages related to user
+     */
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'sender_id')->orWhere('receiver_id', $this->id);
+    }
 }

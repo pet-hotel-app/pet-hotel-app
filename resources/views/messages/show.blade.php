@@ -1,66 +1,72 @@
-<x-app-layout>
-    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Chat with') }} {{ $customer->name }}</h2></x-slot>
-    <div class="py-12">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            @if(session('success'))
-                <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded"><span>{{ session('success') }}</span></div>
-            @endif
+<x-layout.admin>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('messages.customer_messages') }}
+        </h2>
+    </x-slot>
 
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6">
-                    <div class="flex items-center justify-between mb-6">
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-800">{{ $customer->name }}</h3>
-                            <p class="text-sm text-gray-600">{{ $customer->email }}</p>
-                        </div>
-                        <a href="{{ route('messages.index') }}" class="text-sm text-pink-600 hover:text-pink-800">← Back to all conversations</a>
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="flex flex-col h-[75vh]">
+            <!-- Chat Header -->
+            <div class="p-4 border-b flex items-center">
+                <a href="{{ route('messages.index') }}" class="inline-flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full hover:bg-gray-300 transition mr-4">
+                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                </a>
+                <div class="flex items-center gap-3">
+                    <img class="h-10 w-10 rounded-full object-cover" src="{{ $customer->image ? asset('storage/' . $customer->image) : asset('image/default-profile.png') }}" alt="{{ $customer->name }}">
+                    <div>
+                        <h3 class="font-semibold text-lg text-gray-800 leading-tight">
+                            {{ $customer->name }}
+                        </h3>
                     </div>
-                    
-                    <!-- Messages Display -->
-                    <div class="border rounded-lg p-4 mb-6 bg-gray-50" style="max-height: 500px; overflow-y: auto;" id="messageContainer">
-                        @forelse($messages as $message)
-                        <div class="mb-4 {{ $message->sender_id == Auth::id() ? 'text-right' : 'text-left' }}">
-                            <div class="inline-block max-w-xs lg:max-w-md">
-                                <div class="px-4 py-2 rounded-lg {{ $message->sender_id == Auth::id() ? 'bg-pink-500 text-white' : 'bg-white border border-gray-300' }}">
-                                    <p class="text-sm">{{ $message->message }}</p>
-                                </div>
-                                <p class="text-xs text-gray-500 mt-1">
-                                    {{ $message->sender->name }} • {{ $message->created_at->diffForHumans() }}
-                                </p>
+                </div>
+            </div>
+
+            <!-- Chat History -->
+            <div class="flex-grow overflow-y-auto p-6 space-y-4 bg-gray-50" id="messageContainer">
+                @forelse ($messages as $message)
+                    <div class="flex {{ $message->sender_id === Auth::id() ? 'justify-end' : 'justify-start' }}">
+                        <div class="max-w-lg">
+                            <div class="px-4 py-2 rounded-lg shadow {{ $message->sender_id === Auth::id() ? 'bg-pink-500 text-white' : 'bg-white border' }}">
+                                <p class="text-sm font-semibold">{{ $message->sender->name }}</p>
+                                <p class="text-sm mt-1">{{ $message->message }}</p>
+                                <span class="text-xs opacity-75 block text-right mt-2">{{ $message->created_at->format('H:i') }}</span>
                             </div>
                         </div>
-                        @empty
-                        <div class="text-center py-8 text-gray-500">
-                            <p>No messages yet.</p>
-                        </div>
-                        @endforelse
                     </div>
+                @empty
+                    <div class="text-center text-gray-500 pt-16">
+                        <p>{{ __('messages.no_messages_yet') }}</p>
+                        <p class="text-sm">{{ __('messages.start_conversation') }}</p>
+                    </div>
+                @endforelse
+            </div>
 
-                    <!-- Message Input -->
-                    <form action="{{ route('messages.store', $customer) }}" method="POST">
-                        @csrf
-                        <div class="flex gap-2">
-                            <textarea name="message" rows="2" required class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500" placeholder="Type your message..."></textarea>
-                            <button type="submit" class="px-6 py-2 bg-[#FFB6C9] text-white rounded-md font-semibold hover:bg-pink-500 transition">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+            <!-- Reply Form -->
+            <div class="p-6 border-t bg-white">
+                <form action="{{ route('messages.store', $customer) }}" method="POST">
+                    @csrf
+                    <div class="flex items-center gap-4">
+                        <textarea name="message" 
+                                  rows="2" 
+                                  class="w-full rounded-md shadow-sm focus:border-pink-500 focus:ring-pink-500 @error('message') border-red-500 @else border-gray-300 @enderror" 
+                                  placeholder="{{ __('messages.type_message_placeholder') }}"></textarea>
+                        <button type="submit" class="inline-flex items-center px-4 py-2 bg-[#FFB6C9] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-pink-500 focus:bg-pink-500 active:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                            {{ __('messages.send') }}
+                        </button>
+                    </div>
+                    @error('message')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </form>
             </div>
         </div>
     </div>
 
     <script>
-        // Auto-scroll to bottom of messages
         const container = document.getElementById('messageContainer');
         if (container) {
             container.scrollTop = container.scrollHeight;
         }
-
-        // Auto-refresh messages every 10 seconds
-        setInterval(() => {
-            location.reload();
-        }, 10000);
     </script>
-</x-app-layout>
+</x-layout.admin>

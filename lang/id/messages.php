@@ -219,6 +219,7 @@ return [
 
     // Reports
     'bookings_report' => 'Laporan Pemesanan',
+    'bookings_report_description' => 'Lihat statistik dan aktivitas pemesanan terkini.',
     'bookings_statistics' => 'Statistik Pemesanan',
     'total_bookings' => 'Total Pemesanan',
     'confirmed_bookings' => 'Pemesanan Dikonfirmasi',
@@ -227,6 +228,7 @@ return [
 
     // Messages
     'customer_messages' => 'Pesan Pelanggan',
+    'customer_messages_description' => 'Lihat dan balas pesan dari pelanggan.',
     'conversations' => 'Percakapan',
     'no_conversations_found' => 'Tidak ada percakapan yang ditemukan.',
     'last_message_on' => 'Pesan terakhir pada',

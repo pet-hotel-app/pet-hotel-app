@@ -219,6 +219,7 @@ return [
 
     // Reports
     'bookings_report' => 'Bookings Report',
+    'bookings_report_description' => 'View statistics and recent booking activities.',
     'bookings_statistics' => 'Bookings Statistics',
     'total_bookings' => 'Total Bookings',
     'confirmed_bookings' => 'Confirmed Bookings',
@@ -227,6 +228,7 @@ return [
 
     // Messages
     'customer_messages' => 'Customer Messages',
+    'customer_messages_description' => 'View and reply to messages from customers.',
     'conversations' => 'Conversations',
     'no_conversations_found' => 'No conversations found.',
     'last_message_on' => 'Last message on',
