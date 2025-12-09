@@ -131,7 +131,7 @@ class CustomerController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            if ($user->image && $user->image != 'images/default-profile.png') {
+            if ($user->image && basename($user->image) != 'default-profile.png') {
                 Storage::disk('public')->delete($user->image);
             }
             $path = $request->file('image')->store('images/profile', 'public');

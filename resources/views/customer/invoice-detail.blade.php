@@ -1,5 +1,10 @@
 <x-app-layout>
     <div class="space-y-6">
+        <!-- Page Title -->
+        <div>
+            <h1 class="text-3xl font-bold text-gray-900">{{ __('messages.invoice_details') }}</h1>
+            <p class="text-gray-600 mt-1">{{ __('messages.invoice_no') }}{{ $invoice->id }}</p>
+        </div>
         <!-- Invoice Card -->
         <div class="bg-white rounded-xl shadow-sm mt-6">
             <div class="p-8">

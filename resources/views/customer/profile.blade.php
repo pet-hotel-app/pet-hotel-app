@@ -1,4 +1,15 @@
 <x-app-layout>
+    @push('scripts')
+    <script>
+        document.getElementById('image').addEventListener('change', function(event) {
+            const [file] = event.target.files;
+            if (file) {
+                document.getElementById('image-preview').src = URL.createObjectURL(file);
+                document.getElementById('file-name').textContent = file.name;
+            }
+        });
+    </script>
+    @endpush
     <div class="space-y-6">
         <!-- Page Title -->
         <div>
@@ -21,11 +32,12 @@
                         <!-- Profile Image -->
                         <div class="md:col-span-1 flex flex-col items-center">
                             <label for="image" class="block text-sm font-medium text-gray-700 mb-2 self-start">{{ __('messages.profile_image') }}</label>
-                            <img src="{{ str_starts_with(Auth::user()->image, 'images/profile') ? asset('storage/' . Auth::user()->image) : asset('image/' . basename(Auth::user()->image)) }}" alt="Profile Image" class="h-40 w-40 object-cover rounded-full aspect-square shadow-md mb-4">
+                            <img id="image-preview" src="{{ str_starts_with(Auth::user()->image, 'images/profile') ? asset('storage/' . Auth::user()->image) : asset('image/' . basename(Auth::user()->image)) }}" alt="Profile Image" class="h-40 w-40 object-cover rounded-full aspect-square shadow-md mb-4">
                             <label for="image" class="cursor-pointer inline-flex items-center px-4 py-2 bg-pink-100 text-pink-700 rounded-md text-sm font-medium hover:bg-pink-200 transition">
                                 {{ __('messages.change_photo') }}
                             </label>
                             <input type="file" name="image" id="image" class="hidden">
+                            <span id="file-name" class="text-sm text-gray-500 mt-2"></span>
                         </div>
                         <!-- Form Fields -->
                         <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
