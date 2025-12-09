@@ -36,7 +36,7 @@
                                     </span>
                                 </td>
                                 <td class="border-dashed border-t border-gray-200 px-6 py-3">
-                                    <a href="{{ route('invoices.show', $invoice) }}" class="text-indigo-600 hover:text-indigo-900">{{ __('messages.view') }}</a>
+                                    <a href="{{ route('invoices.show', $invoice) }}" class="text-primary hover:text-green-700">{{ __('messages.view') }}</a>
                                     @if(!$invoice->paid)
                                         <form action="{{ route('invoices.update', $invoice) }}" method="POST" class="inline-block">
                                             @csrf @method('PUT')

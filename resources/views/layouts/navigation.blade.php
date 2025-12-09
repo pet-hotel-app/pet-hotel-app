@@ -11,7 +11,7 @@
     // Initial load
     fetch('/api/notifications/unread-count').then(res => res.json()).then(data => notifCount = data.count);
     fetch('/api/messages/unread-count').then(res => res.json()).then(data => messageCount = data.count);
-" class="bg-white border-b border-gray-100">
+" class="bg-white/50 backdrop-blur-sm border-b border-green-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -76,31 +76,31 @@
             <div class="hidden sm:flex sm:items-center sm:ms-6 gap-4">
                 <!-- Language Switcher -->
                 <div class="flex items-center space-x-2">
-                    <a href="{{ route('lang.switch', 'id') }}" class="text-sm font-bold {{ app()->getLocale() == 'id' ? 'text-blue-500' : 'text-gray-500' }}">ID</a>
+                    <a href="{{ route('lang.switch', 'id') }}" class="text-sm font-bold {{ app()->getLocale() == 'id' ? 'text-primary' : 'text-gray-500' }}">ID</a>
                     <span class="text-gray-300">|</span>
-                    <a href="{{ route('lang.switch', 'en') }}" class="text-sm font-bold {{ app()->getLocale() == 'en' ? 'text-blue-500' : 'text-gray-500' }}">EN</a>
+                    <a href="{{ route('lang.switch', 'en') }}" class="text-sm font-bold {{ app()->getLocale() == 'en' ? 'text-primary' : 'text-gray-500' }}">EN</a>
                 </div>
 
                 <!-- Notification Bell -->
                 <a href="@if(Auth::user()->isAdmin()) # @else {{ route('customer.notifications.index') }} @endif" class="relative">
-                    <svg class="w-6 h-6 text-gray-600 hover:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-6 h-6 text-gray-700 hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
                     </svg>
-                    <span x-show="notifCount > 0" x-text="notifCount" class="absolute -top-1 -right-1 bg-pink-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold"></span>
+                    <span x-show="notifCount > 0" x-text="notifCount" class="absolute -top-1 -right-1 bg-secondary text-gray-800 text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold"></span>
                 </a>
 
                 <!-- Messages Icon -->
                 <a href="@if(Auth::user()->isAdmin()) {{ route('messages.index') }} @else {{ route('customer.messages.index') }} @endif" class="relative">
-                    <svg class="w-6 h-6 text-gray-600 hover:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    <svg class="w-6 h-6 text-gray-700 hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
                     </svg>
-                    <span x-show="messageCount > 0" x-text="messageCount" class="absolute -top-1 -right-1 bg-pink-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold"></span>
+                    <span x-show="messageCount > 0" x-text="messageCount" class="absolute -top-1 -right-1 bg-secondary text-gray-800 text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold"></span>
                 </a>
 
                 <!-- Settings Dropdown -->
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-700 bg-transparent hover:text-primary focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">

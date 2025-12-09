@@ -24,7 +24,7 @@ html {
 
     /* Tombol dengan background gradasi, menonjol untuk CTA (Call to Action) */
     .btn-gradient {
-        @apply btn text-white font-semibold shadow-lg rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200;
+        @apply btn text-white font-semibold shadow-lg rounded-lg bg-gradient-to-r from-primary to-green-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200;
     }
 
     /* Tombol sekunder dengan outline/border */
@@ -44,7 +44,7 @@ html {
 
     /* Input field standar untuk form */
     .form-input {
-        @apply w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm;
+        @apply w-full border-gray-300 focus:border-primary focus:ring-primary rounded-md shadow-sm;
     }
 
     /* Input field dengan style khusus seperti di halaman login */
@@ -59,7 +59,7 @@ html {
 
     /* Checkbox kustom */
     .form-checkbox {
-        @apply rounded border-gray-300 text-pink-400 shadow-sm focus:ring-pink-300 w-4 h-4;
+        @apply rounded border-gray-300 text-primary shadow-sm focus:ring-green-300 w-4 h-4;
     }
 
 
@@ -92,7 +92,7 @@ html {
     .heading-4 { @apply text-xl font-bold; }
 
     .text-muted { @apply text-gray-500; }
-    .text-link { @apply text-sm font-medium text-brand-pink hover:underline; }
+    .text-link { @apply text-sm font-medium text-primary hover:underline; }
 
 
     /*=================================================================

@@ -20,7 +20,7 @@
             }
             
             .gradient-bg {
-                background: linear-gradient(135deg, #fef5f0 0%, #fce8e0 100%);
+                background: linear-gradient(135deg, theme('colors.background') 0%, theme('colors.primary') 100%);
             }
             
             .gradient-icon {

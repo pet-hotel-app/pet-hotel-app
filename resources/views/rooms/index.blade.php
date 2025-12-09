@@ -12,7 +12,7 @@
         <div class="p-6">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="text-lg font-semibold text-gray-800">{{ __('messages.all_rooms') }}</h3>
-                <a href="{{ route('rooms.create') }}" class="inline-flex items-center px-4 py-2 bg-[#FFB6C9] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-pink-500 transition">
+                <a href="{{ route('rooms.create') }}" class="btn-gradient inline-flex items-center px-4 py-2 rounded-md font-semibold text-xs text-white uppercase tracking-widest transition">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                     {{ __('messages.add_new_room') }}
                 </a>
@@ -49,7 +49,7 @@
                                     </span>
                                 </td>
                                 <td class="border-dashed border-t border-gray-200 px-6 py-3">
-                                    <a href="{{ route('rooms.edit', $room) }}" class="text-indigo-600 hover:text-indigo-900">{{ __('messages.edit') }}</a>
+                                    <a href="{{ route('rooms.edit', $room) }}" class="text-primary hover:text-green-700">{{ __('messages.edit') }}</a>
                                     <form action="{{ route('rooms.destroy', $room) }}" method="POST" class="inline-block" onsubmit="return confirm('{{ __('messages.delete_room_confirmation') }}');">
                                         @csrf @method('DELETE')
                                         <button type="submit" class="text-red-600 hover:text-red-900">{{ __('messages.delete') }}</button>

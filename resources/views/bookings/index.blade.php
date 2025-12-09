@@ -9,7 +9,7 @@
         <div class="p-6">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="text-lg font-semibold text-gray-800">{{ __('messages.all_bookings') }}</h3>
-                <a href="{{ route('bookings.create') }}" class="inline-flex items-center px-4 py-2 bg-[#FFB6C9] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-pink-500 transition">
+                <a href="{{ route('bookings.create') }}" class="btn-gradient inline-flex items-center px-4 py-2 rounded-md font-semibold text-xs uppercase tracking-widest transition">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                     {{ __('messages.new_booking') }}
                 </a>
@@ -44,7 +44,7 @@
                                     <form action="{{ route('bookings.updateStatus', $booking) }}" method="POST" class="update-status-form">
                                         @csrf
                                         @method('PATCH')
-                                        <select name="status" class="w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 text-xs" onchange="this.form.submit()">
+                                        <select name="status" class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary text-xs" onchange="this.form.submit()">
                                             <option value="reserved" {{ $booking->status == 'reserved' ? 'selected' : '' }}>{{ __('messages.reserved') }}</option>
                                             <option value="confirmed" {{ $booking->status == 'confirmed' ? 'selected' : '' }}>{{ __('messages.confirmed') }}</option>
                                             <option value="pending" {{ $booking->status == 'pending' ? 'selected' : '' }}>{{ __('messages.pending') }}</option>
@@ -53,7 +53,7 @@
                                     </form>
                                 </td>
                                 <td class="border-dashed border-t border-gray-200 px-6 py-3">
-                                    <a href="{{ route('bookings.edit', $booking) }}" class="text-indigo-600 hover:text-indigo-900">{{ __('messages.edit') }}</a>
+                                    <a href="{{ route('bookings.edit', $booking) }}" class="text-primary hover:text-green-700">{{ __('messages.edit') }}</a>
                                     <form action="{{ route('bookings.destroy', $booking) }}" method="POST" class="inline-block" onsubmit="return confirm('{{ __('messages.delete_booking_confirmation') }}');">
                                         @csrf @method('DELETE')
                                         <button type="submit" class="text-red-600 hover:text-red-900">{{ __('messages.delete') }}</button>

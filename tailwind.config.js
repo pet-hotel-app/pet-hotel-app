@@ -13,6 +13,9 @@ export default {
         extend: {
             colors: {
                 'brand-pink': '#FFB6C9',
+                primary: '#48BB78', // Tosca
+                secondary: '#F6E05E', // Kuning
+                background: '#E6FFFA', // Biru Muda
             },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],

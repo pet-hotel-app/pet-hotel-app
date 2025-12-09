@@ -6,7 +6,7 @@
                 <h1 class="text-3xl font-bold text-gray-900">{{ __('messages.my_pets') }}</h1>
                 <p class="text-gray-600 mt-1">{{ __('messages.manage_pets_desc') }}</p>
             </div>
-            <a href="{{ route('customer.pets.create') }}" class="inline-flex items-center px-4 py-2 bg-[#FFB6C9] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-pink-500 transition">
+            <a href="{{ route('customer.pets.create') }}" class="btn-gradient inline-flex items-center px-4 py-2 rounded-md font-semibold text-xs uppercase tracking-widest transition">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                 {{ __('messages.add_new_pet') }}
             </a>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="p-4 bg-gray-50 border-t flex gap-2">
-                    <a href="{{ route('customer.pets.edit', $pet) }}" class="flex-1 text-center px-3 py-2 bg-yellow-100 text-yellow-700 rounded-md text-sm font-medium hover:bg-yellow-200 transition">
+                    <a href="{{ route('customer.pets.edit', $pet) }}" class="flex-1 text-center px-3 py-2 bg-yellow-100 text-yellow-800 rounded-md text-sm font-medium hover:bg-yellow-200 transition">
                         {{ __('messages.edit') }}
                     </a>
                     <form action="{{ route('customer.pets.destroy', $pet) }}" method="POST" class="flex-1" onsubmit="return confirm('{{ __('messages.delete_pet_confirmation') }}')">
@@ -48,7 +48,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
                 <p class="mt-4 text-gray-500">{{ __('messages.no_pets_yet') }}</p>
-                <a href="{{ route('customer.pets.create') }}" class="mt-4 inline-block px-4 py-2 bg-[#FFB6C9] text-white rounded-md hover:bg-pink-500 transition">{{ __('messages.add_your_first_pet') }}</a>
+                <a href="{{ route('customer.pets.create') }}" class="btn-gradient mt-4 inline-block">{{ __('messages.add_your_first_pet') }}</a>
             </div>
             @endforelse
         </div>

@@ -25,7 +25,7 @@
                             </div>
                         </div>
 
-                        <a href="{{ route('customer.book', $room) }}" class="block w-full text-center px-4 py-2 bg-[#FFB6C9] text-white rounded-md font-semibold hover:bg-pink-500 transition">
+                        <a href="{{ route('customer.book', $room) }}" class="btn-gradient block w-full text-center">
                             {{ __('messages.book_now') }}
                         </a>
                     </div>

@@ -3,21 +3,16 @@
         <!-- Back to Home Button -->
         <div class="absolute top-6 left-6 z-10">
             <a href="{{ url('/') }}"
-               class="inline-flex items-center bg-white/80 backdrop-blur-sm text-gray-800 px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-semibold text-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+               class="inline-flex items-center justify-center bg-white text-gray-800 w-10 h-10 rounded-full shadow-lg hover:shadow-xl transition-shadow">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
-                {{ __('messages.back_to_home') }}
             </a>
         </div>
 
         <div class="w-full max-w-md bg-white/70 backdrop-blur-xl rounded-2xl shadow-2xl p-8 space-y-6">
             <div class="text-center space-y-3">
-                <div class="mx-auto h-16 w-16 flex items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-purple-600 shadow-lg">
-                    <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                    </svg>
-                </div>
+                <x-application-logo class="w-20 h-20 mx-auto" />
                 <h2 class="text-3xl font-bold text-gray-900">{{ __('messages.admin_login_welcome') }}</h2>
                 <p class="text-gray-600">{{ __('messages.admin_login_subtitle') }}</p>
             </div>
@@ -34,7 +29,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                         </svg>
                     </div>
-                    <input id="email" name="email" type="email" autocomplete="email" required value="{{ old('email') }}" placeholder="{{ __('messages.form_email_placeholder') }}" class="form-input-icon w-full py-3 rounded-xl border-gray-300 focus:border-brand-pink focus:ring-brand-pink">
+                    <input id="email" name="email" type="email" autocomplete="email" required value="{{ old('email') }}" placeholder="{{ __('messages.form_email_placeholder') }}" class="form-input-icon w-full py-3 rounded-xl">
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
@@ -45,7 +40,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                         </svg>
                     </div>
-                    <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="{{ __('messages.form_password_placeholder') }}" class="form-input-icon w-full py-3 rounded-xl border-gray-300 focus:border-brand-pink focus:ring-brand-pink">
+                    <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="{{ __('messages.form_password_placeholder') }}" class="form-input-icon w-full py-3 rounded-xl">
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
 
@@ -57,13 +52,13 @@
 
                     @if (Route::has('password.request'))
                         <div class="text-sm">
-                            <a href="{{ route('password.request') }}" class="font-medium text-brand-pink hover:underline">{{ __('messages.form_forgot_password') }}</a>
+                            <a href="{{ route('password.request') }}" class="text-link">{{ __('messages.form_forgot_password') }}</a>
                         </div>
                     @endif
                 </div>
 
                 <div>
-                    <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-sm font-medium text-white bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-300 transform hover:scale-105">
+                    <button type="submit" class="btn-gradient w-full flex justify-center py-3 px-4 rounded-xl shadow-lg text-sm font-medium transition-all duration-300 transform hover:scale-105">
                         {{ __('messages.form_sign_in') }}
                     </button>
                 </div>

@@ -17,7 +17,7 @@
                         <p class="text-gray-600">{{ __('messages.date') }}: {{ $invoice->created_at->format('d F Y') }}</p>
                     </div>
                     <div class="text-right">
-                        <h3 class="text-xl font-bold text-pink-600">Pet Hotel</h3>
+                        <h3 class="text-xl font-bold text-primary">Pet Hotel</h3>
                         <p class="text-gray-600">{{ __('messages.pet_care_services') }}</p>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                     <div class="w-full max-w-sm">
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-lg font-semibold">{{ __('messages.total_amount') }}:</span>
-                            <span class="text-2xl font-bold text-pink-600">Rp {{ number_format($invoice->amount, 0, ',', '.') }}</span>
+                            <span class="text-2xl font-bold text-primary">Rp {{ number_format($invoice->amount, 0, ',', '.') }}</span>
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-sm text-gray-600">{{ __('messages.payment_status') }}:</span>
@@ -89,7 +89,7 @@
                     <form action="{{ route('invoices.update', $invoice) }}" method="POST">
                         @csrf @method('PUT')
                         <input type="hidden" name="paid" value="1">
-                        <button type="submit" class="inline-flex items-center px-4 py-2 bg-[#FFB6C9] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-pink-500 transition">
+                        <button type="submit" class="btn-gradient inline-flex items-center px-4 py-2 rounded-md font-semibold text-xs uppercase tracking-widest transition">
                             {{ __('messages.mark_as_paid') }}
                         </button>
                     </form>

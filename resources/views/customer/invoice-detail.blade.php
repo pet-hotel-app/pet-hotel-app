@@ -64,10 +64,10 @@
                 </div>
 
                 <!-- Amount -->
-                <div class="bg-gradient-to-r from-pink-50 to-yellow-50 rounded-lg p-6 mb-6">
+                <div class="bg-gradient-to-r from-green-50 to-teal-50 rounded-lg p-6 mb-6">
                     <div class="flex justify-between items-center">
                         <span class="text-lg font-semibold text-gray-900">{{ __('messages.total_amount') }}</span>
-                        <span class="text-3xl font-bold text-pink-600">Rp {{ number_format($invoice->amount, 0, ',', '.') }}</span>
+                        <span class="text-3xl font-bold text-primary">Rp {{ number_format($invoice->amount, 0, ',', '.') }}</span>
                     </div>
                 </div>
 

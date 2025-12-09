@@ -36,7 +36,7 @@
                                     </div>
                                     <div>
                                         <p class="font-medium text-gray-700">{{ __('messages.amount') }}</p>
-                                        <p class="text-pink-600 font-semibold text-lg">Rp {{ number_format($invoice->amount, 0, ',', '.') }}</p>
+                                        <p class="text-primary font-semibold text-lg">Rp {{ number_format($invoice->amount, 0, ',', '.') }}</p>
                                     </div>
                                 </div>
                                 @endif
@@ -47,7 +47,7 @@
                                 @endif
                             </div>
                             <div class="ml-4">
-                                <a href="{{ route('customer.invoices.show', $invoice) }}" class="inline-flex items-center px-3 py-2 bg-pink-100 text-pink-700 rounded-md text-sm font-medium hover:bg-pink-200 transition">
+                                <a href="{{ route('customer.invoices.show', $invoice) }}" class="inline-flex items-center px-3 py-2 bg-green-100 text-primary rounded-md text-sm font-medium hover:bg-green-200 transition">
                                     {{ __('messages.view_details') }}
                                 </a>
                             </div>

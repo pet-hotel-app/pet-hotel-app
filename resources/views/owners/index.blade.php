@@ -14,7 +14,7 @@
         <div class="p-6">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="text-lg font-semibold text-gray-800">{{ __('messages.all_owners') }}</h3>
-                <a href="{{ route('owners.create') }}" class="inline-flex items-center px-4 py-2 bg-[#FFB6C9] border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-pink-500 focus:bg-pink-500 active:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                <a href="{{ route('owners.create') }}" class="btn-gradient inline-flex items-center px-4 py-2 rounded-md font-semibold text-xs uppercase tracking-widest transition">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                     </svg>
@@ -65,7 +65,7 @@
                                     <span class="text-gray-700">{{ $owner->address }}</span>
                                 </td>
                                 <td class="border-dashed border-t border-gray-200 px-6 py-3">
-                                    <a href="{{ route('owners.edit', $owner) }}" class="text-indigo-600 hover:text-indigo-900">{{ __('messages.edit') }}</a>
+                                    <a href="{{ route('owners.edit', $owner) }}" class="text-primary hover:text-green-700">{{ __('messages.edit') }}</a>
                                     <form action="{{ route('owners.destroy', $owner) }}" method="POST" class="inline-block" onsubmit="return confirm('{{ __('messages.delete_owner_confirmation') }}');">
                                         @csrf
                                         @method('DELETE')

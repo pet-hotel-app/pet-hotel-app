@@ -53,7 +53,7 @@
             <div class="mr-auto place-self-center lg:col-span-7">
                 <h1 class="heading-1 max-w-2xl mb-4 text-gray-900">
                     {{ __('messages.hero_title_1') }} <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">{{ __('messages.hero_title_2') }}</span>
+                    <span class="text-primary">{{ __('messages.hero_title_2') }}</span>
                 </h1>
                 <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
                     {{ __('messages.hero_subtitle') }}
@@ -88,7 +88,7 @@
             <div class="grid space-y-8 md:grid-cols-3 md:gap-8 md:space-y-0">
                 
                 <div class="card-info">
-                    <div class="w-10 h-10 mb-4 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
+                    <div class="w-10 h-10 mb-4 rounded-full bg-green-100 text-primary flex items-center justify-center">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     </div>
                     <h3 class="heading-4 mb-2 text-gray-900">{{ __('messages.feature_1_title') }}</h3>
@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="card-info">
-                    <div class="w-10 h-10 mb-4 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center">
+                    <div class="w-10 h-10 mb-4 rounded-full bg-green-100 text-primary flex items-center justify-center">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
                     <h3 class="heading-4 mb-2 text-gray-900">{{ __('messages.feature_2_title') }}</h3>
@@ -104,7 +104,7 @@
                 </div>
 
                 <div class="card-info">
-                    <div class="w-10 h-10 mb-4 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                    <div class="w-10 h-10 mb-4 rounded-full bg-green-100 text-primary flex items-center justify-center">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                     </div>
                     <h3 class="heading-4 mb-2 text-gray-900">{{ __('messages.feature_3_title') }}</h3>

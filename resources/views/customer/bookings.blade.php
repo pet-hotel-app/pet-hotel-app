@@ -35,7 +35,7 @@
                                     </div>
                                     <div>
                                         <p class="font-medium text-gray-700">{{ __('messages.total_price') }}</p>
-                                        <p class="text-pink-600 font-semibold">Rp {{ number_format($booking->total_price, 0, ',', '.') }}</p>
+                                        <p class="text-primary font-semibold">Rp {{ number_format($booking->total_price, 0, ',', '.') }}</p>
                                     </div>
                                     <div>
                                         <p class="font-medium text-gray-700">{{ __('messages.payment') }}</p>
@@ -57,7 +57,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
                         </svg>
                         <p class="mt-4 text-gray-500">{{ __('messages.no_bookings_yet') }}</p>
-                        <a href="{{ route('customer.rooms') }}" class="mt-4 inline-block px-4 py-2 bg-[#FFB6C9] text-white rounded-md hover:bg-pink-500 transition">{{ __('messages.book_a_room') }}</a>
+                        <a href="{{ route('customer.rooms') }}" class="btn-gradient mt-4 inline-block">{{ __('messages.book_a_room') }}</a>
                     </div>
                 @endforelse
             </div>
