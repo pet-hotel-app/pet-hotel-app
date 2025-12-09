@@ -1,48 +1,21 @@
 <x-auth-layout>
-    <div class="min-h-screen flex gradient-bg">
+    <div class="min-h-screen lg:grid lg:grid-cols-2">
         <!-- Back to Home Button -->
         <div class="fixed top-6 left-6 z-10">
             <a href="{{ url('/') }}"
-               class="inline-flex items-center bg-white text-gray-800 px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-shadow font-semibold text-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+               class="inline-flex items-center justify-center bg-white text-gray-800 w-10 h-10 rounded-full shadow-lg hover:shadow-xl transition-shadow">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
-                {{ __('messages.back_to_home') }}
             </a>
         </div>
-        <!-- Left Panel - Pet Image & Welcome -->
-        <div class="hidden lg:flex lg:w-1/2 items-center justify-center p-12">
-            <div class="text-center max-w-sm">
-                <!-- Pet Image -->
-                <div class="mb-8 flex justify-center">
-                    <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=400&h=400&fit=crop" 
-                         alt="Happy Dog" 
-                         class="w-80 h-80 rounded-3xl object-cover shadow-2xl">
-                </div>
-                
-                <!-- Welcome Text -->
-                <h1 class="text-4xl font-bold text-gray-800 mb-3">
-                    {{ __('messages.register_welcome') }}
-                </h1>
-                
-                <!-- Subtitle -->
-                <p class="text-gray-600 text-lg">
-                    {{ __('messages.register_subtitle') }}
-                </p>
-            </div>
-        </div>
 
-        <!-- Right Panel - Register Form -->
-        <div class="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white">
+        <!-- Left Panel - Register Form -->
+        <div class="w-full flex items-center justify-center p-8">
             <div class="w-full max-w-md">
-                <!-- Gradient Icon -->
+                <!-- Logo -->
                 <div class="flex justify-center mb-6">
-                    <div class="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg"
-                         style="background: linear-gradient(135deg, #FFB6C9 0%, #FFE489 100%);">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
-                        </svg>
-                    </div>
+                    <x-application-logo class="w-20 h-20" />
                 </div>
 
                 <!-- Title -->
@@ -168,5 +141,9 @@
             </div>
         </div>
 
+        <!-- Right Panel - Image -->
+        <div class="hidden lg:block relative">
+            <img src="{{ asset('image/bg-regist.svg') }}" alt="Register background" class="absolute inset-0 w-full h-full object-cover object-right rounded-l-4xl">
+        </div>
     </div>
 </x-auth-layout>

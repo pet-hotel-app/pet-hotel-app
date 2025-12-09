@@ -1,48 +1,26 @@
 <x-auth-layout>
-    <div class="min-h-screen flex gradient-bg">
+    <div class="min-h-screen lg:grid lg:grid-cols-2">
         <!-- Back to Home Button -->
         <div class="fixed top-6 left-6 z-10">
             <a href="{{ url('/') }}"
-               class="inline-flex items-center bg-white text-gray-800 px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-shadow font-semibold text-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+               class="inline-flex items-center justify-center bg-white text-gray-800 w-10 h-10 rounded-full shadow-lg hover:shadow-xl transition-shadow">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
-                {{ __('messages.back_to_home') }}
             </a>
         </div>
-        <!-- Left Panel - Pet Image & Welcome -->
-        <div class="hidden lg:flex lg:w-1/2 items-center justify-center p-12">
-            <div class="text-center max-w-sm">
-                <!-- Pet Image -->
-                <div class="mb-8 flex justify-center">
-                    <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?w=400&h=400&fit=crop" 
-                         alt="Border Collie" 
-                         class="w-80 h-80 rounded-3xl object-cover shadow-2xl">
-                </div>
-                
-                <!-- Welcome Text -->
-                <h1 class="text-4xl font-bold text-gray-800 mb-3">
-                    {{ __('messages.login_welcome') }}
-                </h1>
-                
-                <!-- Subtitle -->
-                <p class="text-gray-600 text-lg">
-                    {{ __('messages.login_subtitle') }}
-                </p>
-            </div>
+
+        <!-- Left Panel - Image -->
+        <div class="hidden lg:block relative">
+            <img src="{{ asset('image/bg-login.svg') }}" alt="Login background" class="absolute inset-0 w-full h-full object-cover object-left rounded-r-4xl">
         </div>
 
         <!-- Right Panel - Login Form -->
-        <div class="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white">
+        <div class="w-full flex items-center justify-center p-8">
             <div class="w-full max-w-md">
-                <!-- Gradient Icon -->
+                <!-- Logo -->
                 <div class="flex justify-center mb-6">
-                    <div class="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg"
-                         style="background: linear-gradient(135deg, #FFB6C9 0%, #FFE489 100%);">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
+                    <x-application-logo class="w-20 h-20" />
                 </div>
 
                 <!-- Title -->
@@ -144,6 +122,5 @@
                 </form>
             </div>
         </div>
-
     </div>
 </x-auth-layout>
