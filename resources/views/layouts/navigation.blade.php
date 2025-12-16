@@ -11,7 +11,7 @@
     // Initial load
     fetch('/api/notifications/unread-count').then(res => res.json()).then(data => notifCount = data.count);
     fetch('/api/messages/unread-count').then(res => res.json()).then(data => messageCount = data.count);
-" class="bg-white/50 backdrop-blur-sm border-b border-green-100">
+" class="relative z-50 bg-white/50 backdrop-blur-sm border-b border-green-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
