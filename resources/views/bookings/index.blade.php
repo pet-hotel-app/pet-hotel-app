@@ -37,7 +37,7 @@
                                 <td class="border-dashed border-t border-gray-200 px-6 py-3"><span class="text-gray-700">#{{ $booking->id }}</span></td>
                                 <td class="border-dashed border-t border-gray-200 px-6 py-3"><span class="text-gray-700">{{ $booking->pet->name }}</span></td>
                                 <td class="border-dashed border-t border-gray-200 px-6 py-3"><span class="text-gray-700">{{ $booking->pet->owner->name }}</span></td>
-                                <td class="border-dashed border-t border-gray-200 px-6 py-3"><span class="text-gray-700">{{ $booking->room->code }}</span></td>
+                                <td class="border-dashed border-t border-gray-200 px-6 py-3"><span class="text-gray-700">{{ $booking->room->code ?? 'N/A' }}</span></td>
                                 <td class="border-dashed border-t border-gray-200 px-6 py-3"><span class="text-gray-700">{{ \Carbon\Carbon::parse($booking->start_date)->translatedFormat('l, d F Y') }}</span></td>
                                 <td class="border-dashed border-t border-gray-200 px-6 py-3"><span class="text-gray-700">{{ \Carbon\Carbon::parse($booking->end_date)->translatedFormat('l, d F Y') }}</span></td>
                                 <td class="border-dashed border-t border-gray-200 px-6 py-3">

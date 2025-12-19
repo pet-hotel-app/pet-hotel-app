@@ -35,7 +35,7 @@
                 </div>
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 text-center">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}" class="btn-gradient">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="btn-secondary">{{ __('messages.login') }}</a>
                         @if (Route::has('register'))
@@ -61,7 +61,7 @@
                 
                 <div class="flex flex-wrap gap-3">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-purple-600 hover:bg-purple-700">
+                        <a href="{{ url('/dashboard') }}" class="btn-gradient px-5 py-3 text-base">
                             {{ __('messages.to_dashboard') }}
                         </a>
                     @else
